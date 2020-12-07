@@ -26,3 +26,23 @@ const calculateUserInput = function (error, promptInput) {
 
 // This exports the function so index.js can import it.
 exports.calculateUserInput = calculateUserInput;
+
+const add = function(num1, num2) {
+  console.log(num1 + num2);
+}
+
+const substract = function(num1, num2) {
+  console.log(num1 - num2);
+}
+
+const multiply = function(num1, num2) {
+  console.log(num1 * num2);
+}
+
+const divide = function(num1, num2) {
+  if (num2 === 0) {
+    console.log('You cannot divide by 0');
+  } else {
+    console.log(num1 / num2);
+  }
+}
