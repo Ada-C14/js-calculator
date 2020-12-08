@@ -27,14 +27,20 @@ const calculateUserInput = function (error, promptInput) {
 
   let num1 = getValidNumber(promptInput.num1);
   let num2 = getValidNumber(promptInput.num2);
-  let operator = getValidOperator(promptInput.operation)
+  let operator = getValidOperator(promptInput.operation);
 
   if (operator === 'add' || operator === '+') {
-    console.log(`${num1} + ${num2} = ${num1 + num2}`)
+    console.log(`${num1} + ${num2} = ${num1 + num2}`);
   } else if (operator === 'subtract' || operator === '-') {
-    console.log(`${num1} - ${num2} = ${num1 - num2}`)
+    console.log(`${num1} - ${num2} = ${num1 - num2}`);
   } else if (operator === 'multiply' || operator === '*') {
-    console.log(`${num1} * ${num2} = ${num1 * num2}`)
+    console.log(`${num1} * ${num2} = ${num1 * num2}`);
+  } else if (operator === 'divide' || operator === '/') {
+    if (num2 == 0) {
+      console.log('You cannot divide by zero');
+    } else {
+      console.log(`${num1} / ${num2} = ${num1 / num2}`);
+    }
   }
 }
 
