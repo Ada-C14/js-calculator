@@ -27,8 +27,9 @@ const calculateUserInput = function (error, promptInput) {
   };
   let firstNum = parseFloat(promptInput.num1);
   let secondNum = parseFloat(promptInput.num2);
+  let operator = promptInput.operation;
   let result = 0;
-  switch (promptInput.operation) {
+  switch (operator) {
     case 'add': case '+':
       result = firstNum + secondNum
       console.log(`${firstNum} + ${secondNum} = ${result}`);
@@ -41,16 +42,24 @@ const calculateUserInput = function (error, promptInput) {
       result = firstNum * secondNum
       console.log(`${firstNum} * ${secondNum} = ${result}`);
       break;
-    case 'divide': case '/':
+    case 'divide': case '/': case 'modulo': case '%':
       if (secondNum === 0) {
         console.log('You cannot divide by zero');
         break;
       };
-      result = firstNum / secondNum
-      console.log(`${firstNum} / ${secondNum} = ${result}`);
-      break;
+      
+      if (operator == 'divide' || operator == '/') {
+        result = firstNum / secondNum
+        console.log(`${firstNum} / ${secondNum} = ${result}`);
+        break;
+      }
+      else {
+        result = firstNum % secondNum
+        console.log(`${firstNum} % ${secondNum} = ${result}`);
+        break;
+      };
     default:
-      console.log(`This calculator doesn't support operator ${promptInput.operation}, please try again.`)
+      console.log(`This calculator doesn't support operator ${operator}, please try again.`)
       break;
   };
 }
