@@ -2,50 +2,54 @@
 const exampleAdditionInput = {
   num1: 3,
   num2: 5,
-  operator: 'add',
+  operation: 'add',
 }
 
 const invalidNumInput = {
   num1: 'a',
   num2: 5,
-  operator: 'add'
+  operation: 'add'
 }
 
 const invalidOpInput = {
   num1: 3,
   num2: 5,
-  operator: '?'
+  operation: '?'
 }
 
 const exampleSubtractionInput = {
   num1: 3,
   num2: 5,
-  operator: 'subtract',
+  operation: 'subtract',
 }
 
 const exampleMultiplicationInput = {
   num1: 3,
   num2: 5,
-  operator: 'multiply',
+  operation: 'multiply',
 }
 
 const exampleDivisionInput = {
   num1: 10,
   num2: 5,
-  operator: 'divide',
+  operation: 'divide',
 }
 
 const exampleZeroDivisionInput = {
   num1: 10,
   num2: 0,
-  operator: 'divide',
+  operation: 'divide',
 }
 
 
 function validateNum(num) {
   if (isNaN(num)) {
     console.log(`${num} is not a valid number!`);
+    // return false 
   }
+  // else {
+  //   return true
+  // }
 }
 
 function validateOperator(operator) {
@@ -53,7 +57,11 @@ function validateOperator(operator) {
 
   if (!operators.includes(operator)) {
     console.log(`${operator} is not a valid operator!`);
+    // return false 
   }
+  // else {
+  //   return true 
+  // }
 }
 
 function divideByZeroCheck(num) {
@@ -65,14 +73,15 @@ function divideByZeroCheck(num) {
   }
 }
 
-const calculateUserInput = function (promptInput) {
-  const num1 = promptInput.num1; 
-  const num2 = promptInput.num2; 
-  const operator = promptInput.operator; 
+const calculateUserInput = function (error, promptInput) {
+  const num1 = Number(promptInput.num1); 
+  const num2 = Number(promptInput.num2); 
+  const operator = promptInput.operation; 
 
   validateNum(num1);
   validateNum(num2);
   validateOperator(operator);
+
 
   switch (operator) {
     case 'add':
@@ -115,13 +124,13 @@ const calculateUserInput = function (promptInput) {
 //   operation: 'add',
 // });
 
-calculateUserInput(exampleAdditionInput);
-calculateUserInput(exampleSubtractionInput);
-calculateUserInput(exampleMultiplicationInput);
-calculateUserInput(exampleDivisionInput);
-calculateUserInput(exampleZeroDivisionInput);
-calculateUserInput(invalidNumInput);
-calculateUserInput(invalidOpInput);
+calculateUserInput({}, exampleAdditionInput);
+calculateUserInput({}, exampleSubtractionInput);
+calculateUserInput({}, exampleMultiplicationInput);
+calculateUserInput({}, exampleDivisionInput);
+calculateUserInput({}, exampleZeroDivisionInput);
+calculateUserInput({}, invalidNumInput);
+calculateUserInput({}, invalidOpInput);
 
 // This exports the function so index.js can import it.
 exports.calculateUserInput = calculateUserInput;
