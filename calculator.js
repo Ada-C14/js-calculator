@@ -18,33 +18,41 @@ const calculateUserInput = function (error, promptInput) {
   const num1 = Number(promptInput.num1);
   const num2 = Number(promptInput.num2);
   const operator = promptInput.operation;
-
-  if (isNaN(num1)) {
-    console.log(`${promptInput.num1} is not a valid number`);
-
-  } else if (isNaN(num2)) {
-    console.log(`${promptInput.num1} is not a valid number`);
-
+ 
+  if (validateInput(num1) && validateInput(num2)) {
+    calculate(num1, num2, operator);
   } else {
-    
-    if (operator === '+' || operator === 'add') {
-      console.log(`${num1} + ${num2} = ${num1 + num2}`);
-
-    } else if (operator === '-' || operator === 'subtract') {
-      console.log(`${num1} - ${num2} = ${num1 - num2}`);
-
-    } else if (operator === '*' || operator === 'multiply') {
-      console.log(`${num1} * ${num2} = ${num1 * num2}`);
-
-    } else if (operator === '/' || operator === 'divide') {
-      if (num2 === 0) console.log('You cannot divide by zero');
-      else console.log(`${num1} / ${num2} = ${num1 / num2}`);
-
-    } else {
-      console.log(`${operator} is not a valid operator`);
-    }
+    if (validateInput(num1)) console.log(`${promptInput.num1} is not a valid number`);
+    if (validateInput(num2)) console.log(`${promptInput.num2} is not a valid number`);
   }
 };
+
+const validateInput = function(num) {
+  return !isNaN(num)
+}
+const calculate = function(num1, num2, operator) {
+  switch (operator) {
+    case '+':
+    case 'add':
+      console.log(`${num1} + ${num2} = ${num1 + num2}`);
+      break;
+    case '-':
+    case 'subtract':
+      console.log(`${num1} - ${num2} = ${num1 - num2}`);
+      break;
+    case '*':
+    case 'multiply':
+      console.log(`${num1} * ${num2} = ${num1 * num2}`);
+      break;
+    case '/':
+    case 'divide':
+      if (num2 === 0) console.log('You cannot divide by zero');
+      else console.log(`${num1} / ${num2} = ${num1 / num2}`);
+      break;
+    default: 
+      console.log(`${operator} is not a supported operator`);
+  }
+}
 
 // Example manual testing of calculator.  
 // calculateUserInput({}, {
