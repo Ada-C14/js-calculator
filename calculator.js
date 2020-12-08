@@ -4,10 +4,23 @@
 //   operation: 'add',
 // }
 
+const validOps = {
+  add: '+',
+  '+': 'add',
+  subtract: '-',
+  '-': 'subtract',
+  multiply: '*',
+  '*': 'multiply',
+  divide: '/',
+  '/': 'divide'
+};
+
 const validNum = function (num) {
   const temp = Number(num);
   
   if (typeof(temp) != 'number') {
+    return false;
+  } else if (Number.isNaN(temp)) {
     return false;
   } else if (temp === 0 && !(temp == num)) {
     return false;
@@ -21,13 +34,21 @@ const calculateUserInput = function (error, promptInput) {
   let num1;
   let num2;
   let soln;
+  let errors = [];
   
   if (validNum(promptInput.num1) && validNum(promptInput.num2)) {
+    console.log('poop');
     num1 = Number(promptInput.num1);
     num2 = Number(promptInput.num2);
+  } else {
+    errors.push('INVALID NUMBER: One of the input numbers is invalid.');
   };
 
-  if (num1 && num2) {
+  if (!validOps[promptInput.operation]) {
+    errors.push('INVALID OPERATOR: Please provide one of the following operators: +, -, *, /');
+  };
+
+  if (num1 && num2 && validOps[promptInput.operation]) {
     switch (promptInput.operation) {
       case 'add':
       case '+':
@@ -45,11 +66,12 @@ const calculateUserInput = function (error, promptInput) {
       case '/':
         soln = num1 / num2;
         break;
-      default:
-        console.log('Please provide one of the following operations: +, -, *, /');
     }
   } else {
-    console.log('Sorry, one of the input numbers is invalid.')
+    console.log(`Woops! We've encountered errors:`);
+    for (error in errors) {
+      console.log(errors[error]);
+    };
   };
 
   if (soln) {
@@ -76,12 +98,23 @@ const calculateUserInput = function (error, promptInput) {
 }
 
 // Example manual testing of calculator.  
+// calculateUserInput({}, {
+//   num1: 3,
+//   num2: 4,
+//   operation: 'add',
+// });
+
+// calculateUserInput({}, {
+//   num1: null,
+//   num2: 4,
+//   operation: 'add',
+// });
+
 calculateUserInput({}, {
   num1: 3,
-  num2: 4,
-  operation: 'add',
+  num2: '+',
+  operation: 'butt',
 });
-
 
 // This exports the function so index.js can import it.
 exports.calculateUserInput = calculateUserInput;
