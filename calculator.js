@@ -20,10 +20,10 @@ const exampleAdditionInput = {
 const calculateUserInput = function (error, promptInput) {
   console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
   if (isNaN(promptInput.num1)) {
-    console.log(`${promptInput.num1} is invalid, please try again`);
+    return console.log(`${promptInput.num1} is invalid, please try again`);
   }
   else if (isNaN(promptInput.num2)) {
-    console.log(`${promptInput.num2} is invalid, please try again`);
+    return console.log(`${promptInput.num2} is invalid, please try again`);
   };
   let firstNum = parseFloat(promptInput.num1);
   let secondNum = parseFloat(promptInput.num2);
@@ -31,16 +31,19 @@ const calculateUserInput = function (error, promptInput) {
   let result = 0;
   switch (operator) {
     case 'add': case '+':
-      result = firstNum + secondNum
+      result = firstNum + secondNum;
       console.log(`${firstNum} + ${secondNum} = ${result}`);
       break;
     case 'substrct': case '-':
-      result = firstNum - secondNum
+      result = firstNum - secondNum;
       console.log(`${firstNum} - ${secondNum} = ${result}`);
       break;
     case 'multiply': case '*':
-      result = firstNum * secondNum
+      result = firstNum * secondNum;
       console.log(`${firstNum} * ${secondNum} = ${result}`);
+      break;
+    case 'power': case '**': case '^':
+      power(firstNum, secondNum);
       break;
     case 'divide': case '/': case 'modulo': case '%':
       if (secondNum === 0) {
@@ -49,28 +52,38 @@ const calculateUserInput = function (error, promptInput) {
       };
       
       if (operator == 'divide' || operator == '/') {
-        result = firstNum / secondNum
+        result = firstNum / secondNum;
         console.log(`${firstNum} / ${secondNum} = ${result}`);
         break;
       }
       else {
-        result = firstNum % secondNum
+        result = firstNum % secondNum;
         console.log(`${firstNum} % ${secondNum} = ${result}`);
         break;
       };
     default:
-      console.log(`This calculator doesn't support operator ${operator}, please try again.`)
+      console.log(`This calculator doesn't support operator ${operator}, please try again.`);
       break;
   };
-}
+};
 
+const power = function(num1, num2) {
+  // Format the power exponent
+  let repeat = `* ${num1} `;
+  if ((num2 > 0) && (num2 <= 10) && ((num2 % 1) === 0)) {
+    return console.log(`${num1} ${repeat.repeat(num2-1)} = ${Math.pow(num1, num2)}`);
+  }  
+  else {
+    return console.log(`${num1} ^ ${num2} = ${Math.pow(num1, num2)}`);
+  };
+};
 
 
 // Example manual testing of calculator.  
 // calculateUserInput({}, {
-//   num1: 3,
-//   num2: 4,
-//   operation: 'add',
+//   num1: 2.3,
+//   num2: 10.5,
+//   operation: 'power',
 // });
 
 
