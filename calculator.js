@@ -44,6 +44,7 @@ const calculateUserInput = function (error, promptInput) {
 
   promptInput.num1 = Number(promptInput.num1);
   promptInput.num2 = Number(promptInput.num2);
+  promptInput.operation = promptInput.operation.toLowerCase();
 
   let result;
   switch(promptInput.operation) {
@@ -81,14 +82,15 @@ const calculateUserInput = function (error, promptInput) {
   return statement; 
 }
 
-calculateUserInput({}, exampleAdditionInput1);
-calculateUserInput({}, exampleAdditionInput2);
-calculateUserInput({}, exampleSubtractionInput1);
-calculateUserInput({}, exampleSubtractionInput2);
-calculateUserInput({}, exampleMultiplicationInput1);
-calculateUserInput({}, exampleMultiplicationInput2);
-calculateUserInput({}, exampleDivisionInput1);
-calculateUserInput({}, exampleDivisionInput2);
+// Tests for basic functions
+// calculateUserInput({}, exampleAdditionInput1);
+// calculateUserInput({}, exampleAdditionInput2);
+// calculateUserInput({}, exampleSubtractionInput1);
+// calculateUserInput({}, exampleSubtractionInput2);
+// calculateUserInput({}, exampleMultiplicationInput1);
+// calculateUserInput({}, exampleMultiplicationInput2);
+// calculateUserInput({}, exampleDivisionInput1);
+// calculateUserInput({}, exampleDivisionInput2);
 
 
 // This exports the function so index.js can import it.
