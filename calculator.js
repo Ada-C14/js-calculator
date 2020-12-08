@@ -7,7 +7,6 @@ const exampleAdditionInput = {
 
 const calculateUserInput = function (error, promptInput) {
   // console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
-
   // Questions to ask and answer:
   // What is promptInput? => an argument
   // What data type? What does it hold? What does it represent? => it's an object like a hash, it holds the data we want, num1, num2, and operator. It represents user input.
@@ -30,6 +29,7 @@ const calculateUserInput = function (error, promptInput) {
 const validateInput = function(num) {
   return !isNaN(num)
 }
+
 const calculate = function(num1, num2, operator) {
   switch (operator) {
     case '+':
