@@ -1,42 +1,84 @@
-
-
-const addNums = function(num1, num2) {
-  return num1 + num2;
+const exampleAdditionInput1 = {
+  num1: 3,
+  num2: 5,
+  operation: 'add',
 }
 
-const subtractNums = function(num1, num2) {
-  return num1 - num2;
+const exampleAdditionInput2 = {
+  num1: 3,
+  num2: 5,
+  operation: '+',
 }
 
-const multiplyNums = function(num1, num2) {
-  return num1 * num2;
+const exampleSubtractionInput1 = {
+  num1: 3,
+  num2: 5,
+  operation: 'subtract',
 }
 
-const divideNums = function(num1, num2) {
-  if (num2 == 0) {
-    throw "Cannot divide by zero";
-  } else {
-    return num1 / num2;
-  }
+const exampleSubtractionInput2 = {
+  num1: 3,
+  num2: 5,
+  operation: '-',
+}
+
+const exampleMultiplicationInput1 = {
+  num1: 3,
+  num2: 5,
+  operation: 'multiply',
+}
+
+const exampleMultiplicationInput2 = {
+  num1: 3,
+  num2: 5,
+  operation: '*',
+}
+
+const exampleDivisionInput1 = {
+  num1: 3,
+  num2: 5,
+  operation: 'divide',
+}
+
+const exampleDivisionInput2 = {
+  num1: 3,
+  num2: 5,
+  operation: '/',
 }
 
 const calculateUserInput = function (error, promptInput) {
   console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
 
-  // Questions to ask and answer:
-  // What is promptInput?
-  // What data type? What does it hold? What does it represent?
-  // How do we read values from it? What syntax?
-  // How can we use it?
-  // Can we call our existing functions now, inside of this function?
+  switch(promptInput.operation) {
+    case 'add':
+    case '+':
+      return promptInput.num1 + promptInput.num2;
+    case 'subtract':
+    case '-':
+      return promptInput.num1 - promptInput.num2;
+    case 'multiply':
+    case '*':
+      return promptInput.num1 * promptInput.num2;
+    case 'divide':
+    case '/':
+      if (promptInput.num2 == 0) {
+        throw 'You cannot divide by zero';
+      } else {
+        return promptInput.num1 / promptInput.num2;
+      }
+    default:
+      throw 'Error occurred. Program exited.';
+  }
 }
 
-// Example manual testing of calculator.  
-// calculateUserInput({}, {
-//   num1: 3,
-//   num2: 4,
-//   operation: 'add',
-// });
+calculateUserInput({}, exampleAdditionInput1);
+calculateUserInput({}, exampleAdditionInput2);
+calculateUserInput({}, exampleSubtractionInput1);
+calculateUserInput({}, exampleSubtractionInput2);
+calculateUserInput({}, exampleMultiplicationInput1);
+calculateUserInput({}, exampleMultiplicationInput2);
+calculateUserInput({}, exampleDivisionInput1);
+calculateUserInput({}, exampleDivisionInput2);
 
 
 // This exports the function so index.js can import it.
