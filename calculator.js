@@ -9,22 +9,15 @@ const calculateUserInput = function (error, promptInput) {
   // console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
 
   // Questions to ask and answer:
-  // What is promptInput?
-  // What data type? What does it hold? What does it represent?
-  // How do we read values from it? What syntax?
-  // How can we use it?
-  // Can we call our existing functions now, inside of this function?
-
-  // let operation = window.prompt("Enter your name: ")( "Please enter a math operation: \n add (+), \n subtract (-), \n multiply (*),  \n divide (/), \n modulo (remainder or %), or \n exponent (** or ^) \n");
+  // What is promptInput? data provided from user
+  // What data type? What does it hold? What does it represent? strings, key: value pairs
+  // How do we read values from it? What syntax? pull from key:value pair, make into number, evaluate if valid, and compare
+  // How can we use it? either directly or by assiging it to a local variable
+  // Can we call our existing functions now, inside of this function? unclear yet how to do helper methods, will update if necessary after function lessons
 
   let operation = promptInput.operation;
-
   let num1 = Number(promptInput.num1);  
-
   let num2  = Number(promptInput.num2);
-
-  // let num1 = window.prompt("Please enter the first number")
-  // let num2 = window.prompt("Please enter the second number")
 
   if (Number.isNaN(num1)  || Number.isNaN(num2)) {
     if (Number.isNaN(num1) ) {
@@ -50,7 +43,6 @@ const calculateUserInput = function (error, promptInput) {
       console.log('unsupported operator')
     }
   }
-
 }
 
 // Example manual testing of calculator.  Returns 7 
