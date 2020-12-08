@@ -23,6 +23,8 @@
 //  operation: 'add'}
 
 
+// MAIN CALCULATOR FUNCTION 
+
 const calculate = function(input) {
   // constant holds key/value pairs to all valid operations
   const opObj = { add: ['+', 'add', 'addition', 'plus'], 
@@ -33,66 +35,41 @@ const calculate = function(input) {
   exponent: ['power', '**', '^', 'exponent']};
 
   // check that num1 and num2 are valid numbers 
-  // note that we don't have parenthetical support yet
+  // note that we don't have parenthetical support yet, i'll have to sit on this a bit and maybe come back to it
   let num1 = Number(input.num1);
   let num2 = Number(input.num2);
 
   // how cuddly do we want to be with braces?
-  if (isNaN(input.num1)) 
-  {
-    return console.log('num1 must be valid number. No parenthetical support.');
-  }
-
-  if (isNaN(input.num2)) 
-  {
-    return console.log('num2 must be valid number. No parenthetical support.');
-  }
+  if (isNaN(input.num1) || isNaN(input.num2)) return console.log('Must input valid numbers. No parenthetical or expression support.');
 
   // for brevity's sake let's store the operation in a shorter variable
   let op = input.operation.toLowerCase();
 
   // check for and operation with valid operator. 
-  switch(true) {
+  switch(true) 
+  {
     case opObj.add.includes(op):
-      console.log(`${num1} + ${num2} = ${num1 + num2}`);
-      return num1 + num2;
+      return console.log(`${num1} + ${num2} = ${num1 + num2}`);
 
     case opObj.subtract.includes(op):
-      console.log(`${num1} - ${num2} = ${num1 - num2}`);
-      return num1 - num2;
+      return console.log(`${num1} - ${num2} = ${num1 - num2}`);
 
     case opObj.multiply.includes(op):
-      console.log(`${num1} * ${num2} = ${num1 * num2}`);
-      return num1 * num2;
+      return console.log(`${num1} * ${num2} = ${num1 * num2}`);
 
     case opObj.divide.includes(op):
-      if (num2 === 0) 
-      {
-        console.log('You cannot divide by zero');
-        return;
-      }
-      console.log(`${num1} / ${num2} = ${num1 / num2}`);
-      return num1 / num2;
+      return console.log(num2 === 0 ? 'You cannot divide by zero' : `${num1} / ${num2} = ${num1 / num2}`);
 
     case opObj.mod.includes(op):
-      if (num2 === 0) 
-      {
-        console.log('You cannot divide by zero');
-        return;
-      }
-      console.log(`${num1} % ${num2} = ${num1 % num2}`);
-      return num1 % num2;
+      return console.log(num2 === 0 ? 'You cannot divide by zero' : `${num1} % ${num2} = ${num1 % num2}`);
 
     case opObj.exponent.includes(op):
-      console.log(`${num1} ^ ${num2} = ${num1 ^ num2}`);
-      return num1 ^ num2;
+      return console.log(`${num1} ^ ${num2} = ${num1 ^ num2}`);
 
     default: 
-      console.log('Invalid operator');
-      return; 
+      return console.log('Invalid operator');
   }
 }
-
 
 // FOR PROVIDED TEST FILE
 
@@ -100,9 +77,6 @@ const calculateUserInput = function (error, promptInput) {
   console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
   calculate(promptInput);
 }
-
-// test statement
-// calculateUserInput({}, exampleAdditionInput);
 
 // Example manual testing of calculator.  
 // calculateUserInput({}, {
