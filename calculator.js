@@ -3,43 +3,36 @@ const exampleAdditionInput1 = {
   num2: 5,
   operation: 'add',
 }
-
 const exampleAdditionInput2 = {
   num1: 3,
   num2: 5,
   operation: '+',
 }
-
 const exampleSubtractionInput1 = {
   num1: 3,
   num2: 5,
   operation: 'subtract',
 }
-
 const exampleSubtractionInput2 = {
   num1: 3,
   num2: 5,
   operation: '-',
 }
-
 const exampleMultiplicationInput1 = {
   num1: 3,
   num2: 5,
   operation: 'multiply',
 }
-
 const exampleMultiplicationInput2 = {
   num1: 3,
   num2: 5,
   operation: '*',
 }
-
 const exampleDivisionInput1 = {
   num1: 3,
   num2: 5,
   operation: 'divide',
 }
-
 const exampleDivisionInput2 = {
   num1: 3,
   num2: 5,
@@ -71,14 +64,14 @@ const calculateUserInput = function (error, promptInput) {
   }
 }
 
-calculateUserInput({}, exampleAdditionInput1);
-calculateUserInput({}, exampleAdditionInput2);
-calculateUserInput({}, exampleSubtractionInput1);
-calculateUserInput({}, exampleSubtractionInput2);
-calculateUserInput({}, exampleMultiplicationInput1);
-calculateUserInput({}, exampleMultiplicationInput2);
-calculateUserInput({}, exampleDivisionInput1);
-calculateUserInput({}, exampleDivisionInput2);
+console.log(calculateUserInput({}, exampleAdditionInput1));
+console.log(calculateUserInput({}, exampleAdditionInput2));
+console.log(calculateUserInput({}, exampleSubtractionInput1));
+console.log(calculateUserInput({}, exampleSubtractionInput2));
+console.log(calculateUserInput({}, exampleMultiplicationInput1));
+console.log(calculateUserInput({}, exampleMultiplicationInput2));
+console.log(calculateUserInput({}, exampleDivisionInput1));
+console.log(calculateUserInput({}, exampleDivisionInput2));
 
 
 // This exports the function so index.js can import it.
