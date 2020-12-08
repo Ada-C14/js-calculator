@@ -45,7 +45,7 @@ const calculate = function(input) {
   // for brevity's sake let's store the operation in a shorter variable
   let op = input.operation.toLowerCase();
 
-  // check for and operation with valid operator. 
+  // check operation with valid operator and print expression 
   switch(true) 
   {
     case opObj.add.includes(op):
