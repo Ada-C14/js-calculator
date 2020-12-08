@@ -9,27 +9,33 @@ const calculateUserInput = function (error, promptInput) {
   console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
   
   // constant holds key/value pairs to all valid operations
-  const operationObject = { add: ['+', 'add', 'addition', 'plus'], 
-                            subtract: ['-', 'subtract', 'subtraction', 'minus'],
-                            multiply: ['*', 'x', 'times', 'multiply', 'multiplication'],
-                            divide: ['/', 'divide', 'division'],
-                            mod: ['modulus', 'modulo', 'remainder', '%', 'mod'],
-                            exponent: ['power', '**', '^', 'exponent']};
+  const opObj = { add: ['+', 'add', 'addition', 'plus'], 
+                  subtract: ['-', 'subtract', 'subtraction', 'minus'],
+                  multiply: ['*', 'x', 'times', 'multiply', 'multiplication'],
+                  divide: ['/', 'divide', 'division'],
+                  mod: ['modulus', 'modulo', 'remainder', '%', 'mod'],
+                  exponent: ['power', '**', '^', 'exponent']};
 
   // check that num1 and num2 are valid numbers 
   // note that we don't have parenthetical support yet
-  if(isNaN(promptInput.num1))
-  {
+  if (isNaN(promptInput.num1)) {
     error.num1 = 'num1 must be valid number. no parenthetical support.' ;
+    return;
+  } else {
+    promptInput.num1 = Number(promptInput.num1);
   }
 
-  if(isNaN(promptInput.num2))
-  {
+  if (isNaN(promptInput.num2)) {
     error.num2 = 'num2 must be valid number. no parenthetical support.' ;
+    return;
+  } else {
+    promptInput.num2 = Number(promptInput.num2);
   }
 
   switch(promptInput.operation) {
-    
+    case opObj.add.includes(promptInput.operation.toLowerCase()):
+      console.log(`${num1} + ${num2} = ${num1 + num2}`);
+      break;
   }
 }
 
