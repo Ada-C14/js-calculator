@@ -49,23 +49,23 @@ const calculateUserInput = function (error, promptInput) {
   let result;
   switch(promptInput.operation) {
     case 'add':
-    case '+':
       promptInput.operation = '+';
+    case '+':
       result = promptInput.num1 + promptInput.num2;
       break;
     case 'subtract':
-    case '-':
       promptInput.operation = '-';
+    case '-':
       result =  promptInput.num1 - promptInput.num2;
       break;
     case 'multiply':
-    case '*':
       promptInput.operation = '*';
+    case '*':
       result = promptInput.num1 * promptInput.num2;
       break;
     case 'divide':
-    case '/':
       promptInput.operation = '/';
+    case '/':
       if (promptInput.num2 == 0) {
         console.log('You cannot divide by zero');
       } else {
