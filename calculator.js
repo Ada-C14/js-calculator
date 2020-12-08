@@ -1,28 +1,45 @@
-
 const exampleAdditionInput = {
-  num1: 3,
-  num2: 5,
-  operation: 'add',
+    num1: 3,
+    num2: 5,
+    operation: 'add',
 }
 
-const calculateUserInput = function (error, promptInput) {
-  console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
-
-  // Questions to ask and answer:
-  // What is promptInput?
-  // What data type? What does it hold? What does it represent?
-  // How do we read values from it? What syntax?
-  // How can we use it?
-  // Can we call our existing functions now, inside of this function?
+function validNum(num) {
+    if (isNaN(parseInt(num))) {
+        console.log(`${num} is not a number`);
+    }
+    return parseInt(num);
 }
 
-// Example manual testing of calculator.  
-// calculateUserInput({}, {
-//   num1: 3,
-//   num2: 4,
-//   operation: 'add',
-// });
+function validOperator(operation) {
+    const acceptedOperations = ['add', 'subtract', 'multiply', 'divide', '+', '-', '*', '/']
+    if (!acceptedOperations.includes(operation)) {
+        console.log('Invalid operator');
+    }
+    return operation
+}
+
+const calculateUserInput = function(error, promptInput) {
 
 
-// This exports the function so index.js can import it.
+    let num1 = validNum(promptInput.num1)
+    let num2 = validNum(promptInput.num2)
+    let operation = validOperator(promptInput.operation)
+
+    if (operation === 'add' || operation === '+') {
+        console.log(`${num1} + ${num2} = ${num1 + num2}`);
+    } else if (operation === 'subtract' || operation === '-') {
+        console.log(`${num1} - ${num2} = ${num1 - num2}`);
+    } else if (operation === 'multiply' || operation === '*') {
+        console.log(`${num1} * ${num2} = ${num1 * num2}`);
+    } else if (operation === 'divide' || operation === '/') {
+        if (num2 === 0) {
+            console.log('You cannot divide by zero');
+        } else {
+            console.log(`${num1} / ${num2} = ${num1 / num2}`);
+        }
+    }
+}
+
+
 exports.calculateUserInput = calculateUserInput;
