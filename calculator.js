@@ -40,14 +40,12 @@ const calculate = function(input) {
   // how cuddly do we want to be with braces?
   if (isNaN(input.num1)) 
   {
-  console.log('num1 must be valid number. No parenthetical support.') ;
-  return;
+    return console.log('num1 must be valid number. No parenthetical support.');
   }
 
   if (isNaN(input.num2)) 
   {
-    console.log('num2 must be valid number. No parenthetical support.') ;
-    return;
+    return console.log('num2 must be valid number. No parenthetical support.');
   }
 
   // for brevity's sake let's store the operation in a shorter variable
@@ -57,7 +55,7 @@ const calculate = function(input) {
   switch(true) {
     case opObj.add.includes(op):
       console.log(`${num1} + ${num2} = ${num1 + num2}`);
-      return num1 + num2;//
+      return num1 + num2;
 
     case opObj.subtract.includes(op):
       console.log(`${num1} - ${num2} = ${num1 - num2}`);
@@ -68,21 +66,21 @@ const calculate = function(input) {
       return num1 * num2;
 
     case opObj.divide.includes(op):
-      console.log(`${num1} / ${num2} = ${num1 / num2}`);
-      if (num2 == 0) 
-      {
-        console.log('You cannot divide by zero');
-      return;
-      }
-      return num1 / num2;
-
-    case opObj.mod.includes(op):
-      console.log(`${num1} % ${num2} = ${num1 % num2}`);
-      if (num2 == 0) 
+      if (num2 === 0) 
       {
         console.log('You cannot divide by zero');
         return;
       }
+      console.log(`${num1} / ${num2} = ${num1 / num2}`);
+      return num1 / num2;
+
+    case opObj.mod.includes(op):
+      if (num2 === 0) 
+      {
+        console.log('You cannot divide by zero');
+        return;
+      }
+      console.log(`${num1} % ${num2} = ${num1 % num2}`);
       return num1 % num2;
 
     case opObj.exponent.includes(op):
