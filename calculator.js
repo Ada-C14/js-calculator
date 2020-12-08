@@ -5,16 +5,27 @@
 // }
 
 const validNum = function (num) {
+  const temp = Number(num);
+  
+  if (typeof(temp) != 'number') {
+    return false;
+  } else if (temp === 0 && !(temp == num)) {
+    return false;
+  };
 
+  return true;
 };
 
 const calculateUserInput = function (error, promptInput) {
   // console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
-  if (validNum(promptInput.num1) && validNum(promptInput.num2) {
-    let num1 = Number(promptInput.num1);
-    let num2 = Number(promptInput.num2);
-  };
+  let num1;
+  let num2;
   let soln;
+  
+  if (validNum(promptInput.num1) && validNum(promptInput.num2)) {
+    num1 = Number(promptInput.num1);
+    num2 = Number(promptInput.num2);
+  };
 
   if (num1 && num2) {
     switch (promptInput.operation) {
