@@ -23,6 +23,9 @@ const calculateUserInput = function (error, promptInput) {
 //   operation: 'add',
 // });
 
+var i_am_a_variable = true;
+
+console.log("I love Linting!");
 
 // This exports the function so index.js can import it.
 exports.calculateUserInput = calculateUserInput;
