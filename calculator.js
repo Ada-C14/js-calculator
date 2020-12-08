@@ -20,9 +20,9 @@ const exampleAdditionInput = {
 const calculateUserInput = function (error, promptInput) {
   console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput,'\n');
   
-  let firstNum = parseFloat(promptInput.num1);
-  let secondNum = parseFloat(promptInput.num2);
-  let operator = promptInput.operation.toLowerCase();
+  const firstNum = parseFloat(promptInput.num1);
+  const secondNum = parseFloat(promptInput.num2);
+  const operator = promptInput.operation.toLowerCase();
   let result = 0;
 
   if (isNaN(promptInput.num1) || isNaN(firstNum)) {
@@ -72,7 +72,7 @@ const calculateUserInput = function (error, promptInput) {
 
 const power = function(num1, num2) {
   // Format the power exponent
-  let repeat = `* ${num1} `;
+  const repeat = `* ${num1} `;
   if ((num2 > 0) && (num2 <= 10) && ((num2 % 1) === 0)) {
     return console.log(`${num1} ${repeat.repeat(num2-1)} = ${Math.pow(num1, num2)}`);
   }  
