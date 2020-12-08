@@ -27,7 +27,7 @@ const calculateUserInput = function (error, promptInput) {
   };
   let firstNum = parseFloat(promptInput.num1);
   let secondNum = parseFloat(promptInput.num2);
-  let operator = promptInput.operation;
+  let operator = promptInput.operation.toLowerCase();
   let result = 0;
   switch (operator) {
     case 'add': case '+':
