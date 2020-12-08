@@ -40,38 +40,55 @@ const exampleDivisionInput2 = {
 }
 
 const calculateUserInput = function (error, promptInput) {
-  console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
+  // console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
 
+  promptInput.num1 = Number(promptInput.num1);
+  promptInput.num2 = Number(promptInput.num2);
+
+  let result;
   switch(promptInput.operation) {
     case 'add':
     case '+':
-      return promptInput.num1 + promptInput.num2;
+      promptInput.operation = '+';
+      result = promptInput.num1 + promptInput.num2;
+      break;
     case 'subtract':
     case '-':
-      return promptInput.num1 - promptInput.num2;
+      promptInput.operation = '-';
+      result =  promptInput.num1 - promptInput.num2;
+      break;
     case 'multiply':
     case '*':
-      return promptInput.num1 * promptInput.num2;
+      promptInput.operation = '*';
+      result = promptInput.num1 * promptInput.num2;
+      break;
     case 'divide':
     case '/':
+      promptInput.operation = '/';
       if (promptInput.num2 == 0) {
-        throw 'You cannot divide by zero';
+        console.log('You cannot divide by zero');
       } else {
-        return promptInput.num1 / promptInput.num2;
+        result = promptInput.num1 / promptInput.num2;
       }
+      break;
     default:
       throw 'Error occurred. Program exited.';
   }
+
+  const statement = `${promptInput.num1} ${promptInput.operation} ${promptInput.num2} = ${result}`;
+
+  console.log(statement);
+  return statement; 
 }
 
-console.log(calculateUserInput({}, exampleAdditionInput1));
-console.log(calculateUserInput({}, exampleAdditionInput2));
-console.log(calculateUserInput({}, exampleSubtractionInput1));
-console.log(calculateUserInput({}, exampleSubtractionInput2));
-console.log(calculateUserInput({}, exampleMultiplicationInput1));
-console.log(calculateUserInput({}, exampleMultiplicationInput2));
-console.log(calculateUserInput({}, exampleDivisionInput1));
-console.log(calculateUserInput({}, exampleDivisionInput2));
+calculateUserInput({}, exampleAdditionInput1);
+calculateUserInput({}, exampleAdditionInput2);
+calculateUserInput({}, exampleSubtractionInput1);
+calculateUserInput({}, exampleSubtractionInput2);
+calculateUserInput({}, exampleMultiplicationInput1);
+calculateUserInput({}, exampleMultiplicationInput2);
+calculateUserInput({}, exampleDivisionInput1);
+calculateUserInput({}, exampleDivisionInput2);
 
 
 // This exports the function so index.js can import it.
