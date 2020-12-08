@@ -8,8 +8,8 @@
   // -> typeof variableName
   // How can we use it?
   // -> I used it to check if the num1 and num2 were numbers, i.e.
-  //if ('number' !== typeof input['num1']){
-  //  console.log(`Error: "${input['num1']}" is not a number. Please enter a number and run the program again.`);
+  //if (typeof promptInput['num1'] !== 'number'){
+   // console.log(`Error: ${promptInput['num1']} is not a number. Please enter a number and run the program again.`);
   //}
   // Can we call our existing functions now, inside of this function?
   // -> Yes
@@ -17,72 +17,83 @@
   // console.log(answer);
   
   const calculateUserInput = function (error, promptInput) {
-  console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
+    //console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
+    const num1 = parseInt(promptInput['num1']);
+    const num2 = parseInt(promptInput['num2']);
 
-  if ('number' !== typeof input['num1']){
-    console.log(`Error: "${input['num1']}" is not a number. Please enter a number and run the program again.`);
-  }
+    if (isNaN(num1)){
+      console.log(`Error: ${promptInput['num1']} is not a number. Please enter a number and run the program again.`);
+    }
+    // if (typeof promptInput['num2'] != 'number'){
 
-  if ('number' !== typeof input['num2']){
-    console.log(`Error: "${input['num2']}" is not a number. Please enter a number and run the program again.`);
-  }
+    if (isNaN(num2)){
+      console.log(`Error: ${promptInput['num2']} is not a number. Please enter a number and run the program again.`);
+    }
 
-  let result;
+      let result;
 
-  switch (input['operation']){
-    case 'add':
-    case '+':
-      result = (input['num1'] + input['num2']);
-      console.log(`${input['num1']} + ${input['num2']} = ${result}`);
-      break;
-    case 'subtract':
-    case '-':
-      result = (input['num1'] - input['num2']);
-      console.log(`${input['num1']} - ${input['num2']} = ${result}`);
-      break;
-    case 'multiply':
-    case '*':
-      result = (input['num1'] * input['num2']);
-      console.log(`${input['num1']} * ${input['num2']} = ${result}`);
-      break;
-    case 'divide':
-    case '/':
-      if (input['num2'] === 0){
-        result = 'cannot be calculated because we cannot divide by zero';
-      }else{
-        result = (input['num1'] / input['num2']);
-        console.log(`${input['num1']} / ${input['num2']} = ${result}`);
+      const input = promptInput['operation']
+    //switch (promptInput['operation']){
+      switch (input){
+      case 'add':
+      case '+':
+        console
+        result = (num1 + num2);
+        console.log(`${num1} + ${num2} = ${result}`);
+        break;
+      case 'subtract':
+      case '-':
+        result = (num1 - num2);
+        console.log(`${num1} - ${num2} = ${result}`);
+        break;
+      case 'multiply':
+      case '*':
+        result = (num1 * num2);
+        console.log(`${num1} * ${num2} = ${result}`);
+        break;
+      case 'divide':
+      case '/':
+        if (num2 === 0){
+          //result = 'cannot be calculated because we cannot divide by zero';
+          result = 'You cannot divide by zero'
+          console.log(`${result}`);
+
+        }else{
+          result = (num1 / num2);
+          console.log(`${num1} / ${num2} = ${result}`);
+        }
+        break;
+      case'modulus':
+      case '%':
+        if (num2 === 0){
+          result = 'cannot be calculated because we cannot perform modulus zero';
+          console.log(`${result}`);
+        }else{
+          result = (num1 % num2);
+          console.log(`${num1} % ${num2} = ${result}`);
+        }
+        break;
+      case 'raised-to':
+      case '^':
+        result = (num1 ** num2);
+        console.log(`${num1} ^ ${num2} = ${result}`);
+        break;
+      default:
+        result = `The word or symbol "${promptInput['operation']}" is not a valid operator.  Please enter a valid operator, and run the program again.`;
+        console.log(`${result}`);
       }
-      break;
-    case'modulus':
-    case '%':
-      if (input['num2'] === 0){
-        result = 'cannot be calculated because we cannot perform modulus zero';
-      }else{
-        result = (input['num1'] % input['num2']);
-        console.log(`${input['num1']} % ${input['num2']} = ${result}`);
-      }
-      break;
-    case 'raised-to':
-    case '^':
-      result = (input['num1'] ** input['num2']);
-      console.log(`${input['num1']} ^ ${input['num2']} = ${result}`);
-      break;
-    default:
-      result = `The word or symbol "${input['operation']}" is not a valid operator.  Please enter a valid operator, and run the program again.`;
-  }
 
-  return result;
+    //return result;
 }
 
 // This exports the function so index.js can import it.
 exports.calculateUserInput = calculateUserInput;
 
-// const input = {
-//   num1: 3,
-//   num2: -5,
-//   operation: '/',
-// }
+const arr = {
+  num1: 3,
+  num2: -4,
+  operation: '+',
+}
 
-// const answer = calculator(input);
-// console.log(answer);
+const answer= calculateUserInput('3 + -4 = -1 with "add"', arr);
+console.log('answer', answer);
