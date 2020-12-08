@@ -62,9 +62,9 @@ const calculateUserInput = function (error, promptInput) {
   } else if (num2String === '') {
     console.log('You did not enter a second number');
   } else if (isNaN(number1)) {
-    console.log(`${num1String} is not a number`);
+    console.log(`${num1String} is not a number.`);
   } else if (isNaN(number2)) {
-    console.log(`${num2String} is not a number`);
+    console.log(`${num2String} is not a number.`);
   } else {
     switch (operator) {
       case 'add': case '+':
