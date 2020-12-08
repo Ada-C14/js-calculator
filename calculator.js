@@ -1,9 +1,26 @@
+// calculateUserInput questions
 
-// promptInput
-const exampleAdditionInput = {
-  num1: 3,
-  num2: 5,
-  operation: 'add'}
+// What is promptInput? 
+// * promptInput is a parameter for function calculateUserInput
+
+// What data type? What does it hold? What does it represent?
+// * promptInput is an object type that has 3 keys: num1, num2, operation.
+
+// How do we read values from it? What syntax?
+// * We can use dot (promptInput.num1) or bracket (promptInput[num1]) notation.
+
+// How can we use it?
+// * promptInput serves as our user input to pass into our calculator to evaluate. 
+
+// Can we call our existing functions now, inside of this function?
+// * Yes! So long as they have been declared and can accept promptInput as a parameter as well. 
+
+
+// input example
+// const exampleAdditionInput = {
+//  num1: 3,
+//  num2: 5,
+//  operation: 'add'}
 
 
 const calculate = function(input) {
@@ -20,6 +37,7 @@ const calculate = function(input) {
   let num1 = Number(input.num1);
   let num2 = Number(input.num2);
 
+  // how cuddly do we want to be with braces?
   if (isNaN(input.num1)) 
   {
   console.log('num1 must be valid number. No parenthetical support.') ;
@@ -77,6 +95,8 @@ const calculate = function(input) {
   }
 }
 
+
+// FOR PROVIDED TEST FILE
 
 const calculateUserInput = function (error, promptInput) {
   console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
