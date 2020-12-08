@@ -18,41 +18,34 @@ const calculateUserInput = function (error, promptInput) {
   const num2 = Number(promptInput.num2);
   const operator = promptInput.operation
 
-  if (!validateInput(num1)) {
-    console.log(`${num1} is not a valid number`);
-  }
-
-  if (!validateInput(num2)) {
-    console.log(`${num2} is not a valid number`)
-  }
-
-  if (validateInput(num1) && validateInput(num2)) {
+  if (isNaN(num1)) {
+    console.log(`${promptInput.num1} is not a valid number`);
+  } else if (isNaN(num2)) {
+    console.log(`${promptInput.num1} is not a valid number`)
+  } else {
     if (operator === '+' || operator === 'add') {
       console.log(`${num1} + ${num2} = ${num1 + num2}`);
-    } else if (operator === "-" || operator === "subtract") {
+    } else if (operator === '-' || operator === 'subtract') {
       console.log(`${num1} - ${num2} = ${num1 - num2}`);
-    } else if (operator === "*" || operator === "multiply") {
+    } else if (operator === '*' || operator === 'multiply') {
       console.log(`${num1} * ${num2} = ${num1 * num2}`);
-    } else if (operator === "/" || operator === "divide") {
+    } else if (operator === '/' || operator === 'divide') {
       if (num2 === 0) console.log('You cannot divide by zero');
       else console.log(`${num1} / ${num2} = ${num1 / num2}`);
     } else {
-      console.log('Operator Not Valid');
+      console.log(`${operator} is not a valid operator`);
     }
   }
 }
 
-const validateInput = function(num) {
-  return typeof(num) === 'number';
-}
 
 
 
 // Example manual testing of calculator.  
 // calculateUserInput({}, {
-//   num1: 3,
+//   num1: "5",
 //   num2: 0,
-//   operation: '*',
+//   operation: '/hello',
 // });
 
 
