@@ -1,6 +1,7 @@
 function validNumber(number) {
   if (isNaN(parseInt(number))) {
-    throw `${number} is not a number`;
+    // throw `${number} is not a number`;
+    console.log(`${number} is not a number`)
     }
   return number;
 } 
