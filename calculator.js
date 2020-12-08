@@ -4,36 +4,46 @@
 //   operation: 'add',
 // }
 
+const validNum = function (num) {
+
+};
+
 const calculateUserInput = function (error, promptInput) {
   // console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
-  let num1 = Number(promptInput.num1);
-  let num2 = Number(promptInput.num2);
+  if (validNum(promptInput.num1) && validNum(promptInput.num2) {
+    let num1 = Number(promptInput.num1);
+    let num2 = Number(promptInput.num2);
+  };
   let soln;
 
-  switch (promptInput.operation) {
-    case 'add':
-    case '+':
-      soln = num1 + num2;
-      break;
-    case 'subtract':
-    case '-':
-      soln = num1 - num2;
-      break;
-    case 'multiply':
-    case '*':
-      soln = num1 * num2;
-      break;
-    case 'divide':
-    case '/':
-      soln = num1 / num2;
-      break;
-    default:
-      console.log('Please provide one of the following operations: +, -, *, /');
-  }
+  if (num1 && num2) {
+    switch (promptInput.operation) {
+      case 'add':
+      case '+':
+        soln = num1 + num2;
+        break;
+      case 'subtract':
+      case '-':
+        soln = num1 - num2;
+        break;
+      case 'multiply':
+      case '*':
+        soln = num1 * num2;
+        break;
+      case 'divide':
+      case '/':
+        soln = num1 / num2;
+        break;
+      default:
+        console.log('Please provide one of the following operations: +, -, *, /');
+    }
+  } else {
+    console.log('Sorry, one of the input numbers is invalid.')
+  };
 
   if (soln) {
     console.log(soln);
-  }
+  };
 
   // Questions to ask and answer:
   // What is promptInput?
