@@ -33,6 +33,8 @@ const calculateUserInput = function (error, promptInput) {
     console.log(`${num1} + ${num2} = ${num1 + num2}`)
   } else if (operator === 'subtract' || operator === '-') {
     console.log(`${num1} - ${num2} = ${num1 - num2}`)
+  } else if (operator === 'multiply' || operator === '*') {
+    console.log(`${num1} * ${num2} = ${num1 * num2}`)
   }
 }
 
