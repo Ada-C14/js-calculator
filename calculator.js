@@ -1,4 +1,4 @@
-function validNumber(number) {
+const validNumber = function(number) {
   if (isNaN(parseInt(number))) {
     console.log(`${number} is not a number`);
     }
@@ -42,4 +42,3 @@ const calculateUserInput = function (error, promptInput) {
 
 // This exports the function so index.js can import it.
 exports.calculateUserInput = calculateUserInput;
-
