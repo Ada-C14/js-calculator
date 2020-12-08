@@ -167,7 +167,7 @@ describe('calculateUserInput', () => {
     });
 
     expect(console.log).toHaveBeenCalled();
-    expect(console.log.mock.calls).toContainEqual(['You cannot divide by zero']);
+    expect(console.log.mock.calls).toContainEqual(['You cannot divide or take the modulus of a number by zero']);
   });
 });
 
