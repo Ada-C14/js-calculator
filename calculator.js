@@ -1,3 +1,4 @@
+const prompt = require('prompt')
 
 const exampleAdditionInput = {
   num1: 3,
