@@ -1,8 +1,15 @@
-
 const exampleAdditionInput = {
   num1: 3,
   num2: 5,
   operation: 'add',
+}
+
+function getValidInput(operator) {
+  const operators = ['add', '+', 'subtract', '-', 'multiply', '*', 'divide', '/'];
+
+  if (operators.includes(operator)) {
+
+  }
 }
 
 const calculateUserInput = function (error, promptInput) {
@@ -16,7 +23,7 @@ const calculateUserInput = function (error, promptInput) {
   // Can we call our existing functions now, inside of this function?
 }
 
-// Example manual testing of calculator.  
+// Example manual testing of calculator.
 // calculateUserInput({}, {
 //   num1: 3,
 //   num2: 4,
