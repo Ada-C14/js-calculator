@@ -48,6 +48,7 @@ const calculateUserInput = function (error, promptInput) {
 
   let result;
   switch(promptInput.operation) {
+    /* eslint-disable no-fallthrough */
     case 'add':
       promptInput.operation = '+';
     case '+':
