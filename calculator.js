@@ -1,5 +1,3 @@
-const calculateUserInput = function (error, promptInput) {
-  console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
 
   // Questions to ask and answer:
   // What is promptInput?
@@ -17,13 +15,9 @@ const calculateUserInput = function (error, promptInput) {
   // -> Yes
   // const answer = calculateUserInput(input);
   // console.log(answer);
-}
-
-
-// This exports the function so index.js can import it.
-exports.calculateUserInput = calculateUserInput;
-
-const calculateUserInput = function(input){
+  
+  const calculateUserInput = function (error, promptInput) {
+  console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
 
   if ('number' !== typeof input['num1']){
     console.log(`Error: "${input['num1']}" is not a number. Please enter a number and run the program again.`);
@@ -80,6 +74,9 @@ const calculateUserInput = function(input){
 
   return result;
 }
+
+// This exports the function so index.js can import it.
+exports.calculateUserInput = calculateUserInput;
 
 // const input = {
 //   num1: 3,
