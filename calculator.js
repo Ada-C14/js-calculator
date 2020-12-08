@@ -13,6 +13,14 @@ const operatorSign = function(operation) {
     case 'divide':
     case '/':  
       return '/';
+    case 'exponentiate':
+    case '**':
+    case '^':
+      return '**';
+    case 'mod':
+    case 'modulo':
+    case '%':
+      return '%'
     default: 
       return null;
   }
@@ -38,6 +46,14 @@ const divideNums = function(num1, num2) {
   }
 }
 
+const exponentiateNums = function(num1, num2) {
+  return num1 ** num2;
+}
+
+const modNums = function(num1, num2) {
+  return num1 % num2;
+}
+
 const isNumber = function(num) {
   if (isNaN(num)) {
     console.log(`${num} is not a number`);
@@ -50,27 +66,20 @@ const isNumber = function(num) {
   }
 }
 
-// Example userInput
-const userInput = {
-  num1: 3,
-  num2: 5,
-  operation: 'add',
-}
+// // Example userInput
+// const userInput = {
+//   num1: 3,
+//   num2: 5,
+//   operation: 'add',
+// }
 
-const calculateUserInput = function (error, promptInput) {
+const calculateUserInput = function(error, promptInput) {
   console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
-
-  // Questions to ask and answer:
-  // What is promptInput?
-  // What data type? What does it hold? What does it represent?
-  // How do we read values from it? What syntax?
-  // How can we use it?
-  // Can we call our existing functions now, inside of this function?
 
   if (isNumber(promptInput.num1) && isNumber(promptInput.num2)){
     const num1 = Number(promptInput.num1);
     const num2 = Number(promptInput.num2);
-    const operator = operatorSign(promptInput.operation);
+    const operator = operatorSign(promptInput.operation.toLowerCase());
     
     const result = (function (operator){
       switch (operator) {
@@ -82,11 +91,14 @@ const calculateUserInput = function (error, promptInput) {
           return multiplyNums(num1, num2);
         case '/':
           return divideNums(num1, num2);
+        case '**':
+          return exponentiateNums(num1, num2);
+        case '%':
+          return modNums(num1, num2);
         default:
           console.log(`unsupported operator`);   
       }
     })(operator);
-
 
     if (typeof result === 'number') {
       console.log(`${num1} ${operator} ${num2} = ${result}`);
@@ -95,11 +107,11 @@ const calculateUserInput = function (error, promptInput) {
 }
 
 // // Example manual testing of calculator.  
-calculateUserInput({}, {
-  num1: 3,
-  num2: 0,
-  operation: '*',
-});
+// calculateUserInput({}, {
+//   num1: 3,
+//   num2: 3.2,
+//   operation: '^',
+// });
 
 
 // This exports the function so index.js can import it.
