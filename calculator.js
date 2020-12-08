@@ -1,9 +1,3 @@
-// const exampleAdditionInput = {
-//   num1: 3,
-//   num2: 5,
-//   operation: 'add',
-// }
-
 const validOps = {
   add: '+',
   '+': 'add',
@@ -30,14 +24,12 @@ const validNum = function (num) {
 };
 
 const calculateUserInput = function (error, promptInput) {
-  // console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
   let num1;
   let num2;
   let soln;
   let errors = [];
   
   if (validNum(promptInput.num1) && validNum(promptInput.num2)) {
-    console.log('poop');
     num1 = Number(promptInput.num1);
     num2 = Number(promptInput.num2);
   } else {
@@ -98,11 +90,11 @@ const calculateUserInput = function (error, promptInput) {
 }
 
 // Example manual testing of calculator.  
-// calculateUserInput({}, {
-//   num1: 3,
-//   num2: 4,
-//   operation: 'add',
-// });
+calculateUserInput({}, {
+  num1: 3,
+  num2: 4,
+  operation: 'add',
+});
 
 // calculateUserInput({}, {
 //   num1: null,
@@ -110,11 +102,11 @@ const calculateUserInput = function (error, promptInput) {
 //   operation: 'add',
 // });
 
-calculateUserInput({}, {
-  num1: 3,
-  num2: '+',
-  operation: 'butt',
-});
+// calculateUserInput({}, {
+//   num1: 3,
+//   num2: '+',
+//   operation: 'butt',
+// });
 
 // This exports the function so index.js can import it.
 exports.calculateUserInput = calculateUserInput;
