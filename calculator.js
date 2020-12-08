@@ -41,6 +41,24 @@ const invalidOpInput = {
   operation: '?'
 }
 
+const exampleExponentInput = {
+  num1: 4,
+  num2: 2,
+  operation: 'exponent'
+}
+
+const exampleValidModInput = {
+  num1: 4,
+  num2: 2,
+  operation: 'modulo'
+}
+
+const exampleInValidModInput = {
+  num1: 4,
+  num2: 0,
+  operation: 'modulo'
+}
+
 function validateNum(num) {
   if (isNaN(num)) {
     console.log(`${num} is not a valid number!`);
@@ -52,7 +70,7 @@ function validateNum(num) {
 }
 
 function validateOperator(operator) {
-  const operators = ['add', '+', 'subtract', '-', 'multiply', '*', 'divide', '/']
+  const operators = ['add', '+', 'subtract', '-', 'multiply', '*', 'divide', '/', 'exponent', '**', 'modulo', '%']
 
   if (!operators.includes(operator)) {
     console.log(`${operator} is not a valid operator!`);
@@ -115,6 +133,21 @@ const calculateUserInput = function (error, promptInput) {
             console.log(`${num1} / ${num2} = ${num1 / num2}`);
             break;
           }
+      case 'exponent': 
+      case '**':
+        console.log(`${num1} ** ${num2} = ${num1 ** num2}`);
+        break;
+      case 'modulo':
+      case '%':
+        if (divideByZeroCheck(num2)) {
+          console.log('You cannot divide by zero');
+          break;
+        }
+        else {
+          console.log(`${num1} % ${num2} = ${num1 % num2}`);
+          break;
+        }
+        
     }
   }
 // else {
@@ -170,6 +203,9 @@ calculateUserInput({}, exampleDivisionInput);
 calculateUserInput({}, exampleZeroDivisionInput); 
 calculateUserInput({}, invalidNumInput);
 calculateUserInput({}, invalidOpInput);
+calculateUserInput({}, exampleExponentInput);
+calculateUserInput({}, exampleInValidModInput);
+calculateUserInput({}, exampleValidModInput);
 
 // This exports the function so index.js can import it.
 exports.calculateUserInput = calculateUserInput;
