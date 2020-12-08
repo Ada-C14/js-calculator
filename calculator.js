@@ -1,32 +1,40 @@
 
 const exampleAdditionInput = {
-  num1: 3,
-  num2: 5,
-  operation: 'add',
+  num1: '3a',
+  num2: 5.,
+  operation: 'addd',
 }
 
 function validationController(input) {
-  let errors = []
-  if (numValid(input.num1))
-    errors << `${input.num1} is not a valid number. Please re-enter`
+  // try { 
+    if (!numValid(input.num1)) {
+    // throw `${input.num1} is not a valid number. Please re-enter`
+console.log('1')
+    }
+    if (!numValid(input.num2)) {
+    // throw `${input.num2} is not a valid number. Please re-enter`
+    console.log('2')
+    }
+    if (!opValid(input.operation)) {
+    // throw `${input.num2} is not a valid operation. Please re-enter`
+    console.log('3')
+    }
+  // }
+// catch(err) {err + 'is not valid. Please re-enter'}
 
-  if (numValid(input.num2))
-    errors << `${input.num2} is not a valid number. Please re-enter`
-
-  if (opValid(input.operation))
-    errors << `${input.num2} is not a valid operation. Please re-enter`
-
-  console.log(errors)
+  // catch(err) {}
+//   console.error(e.name);
+  // console.log(err.message);
 }
 
 function numValid(num) {
   let regex = /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/;
-  return (!regex.test(num));
+  return (regex.test(num));
 }
 
 function opValid(operation) {
-  let ops = ['add', 'subtract', 'multiply', 'divide', 'mod', '+', '-', '*', '/', '%']
-  return (!ops.includes(operation)); 
+  let ops = ['add', 'subtract', 'multiply', 'divide', 'mod', '+', '-', '*', '/', '%'];
+  return (ops.includes(operation)); 
 }
 
 validationController (exampleAdditionInput)
