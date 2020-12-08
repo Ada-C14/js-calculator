@@ -25,7 +25,7 @@ const isNumber = function(num) {
   } else if (parseFloat(num)) {
     return true
   } else {
-    return console.log('Empty string entered')
+    return console.log('Empty string cannot be operated on. Number must be entered')
   }
 }
 
@@ -76,11 +76,11 @@ const calculateUserInput = function (error, promptInput) {
 }
 
 // Example manual testing of calculator.  
-calculateUserInput({}, {
-  num1: 1,
-  num2: '',
-  operation: '+',
-});
+// calculateUserInput({}, {
+//   num1: 'hotdog',
+//   num2: '',
+//   operation: '+',
+// });
 
 
 // This exports the function so index.js can import it.
