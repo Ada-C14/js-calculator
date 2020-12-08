@@ -6,8 +6,6 @@
 
 const calculateUserInput = function (error, promptInput) {
   // console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
-  // console.log(promptInput);
-  // console.log(`${promptInput.num1}`);
   let num1 = Number(promptInput.num1);
   let num2 = Number(promptInput.num2);
   let soln;
@@ -34,15 +32,26 @@ const calculateUserInput = function (error, promptInput) {
   }
 
   if (soln) {
-    console.log(soln)
+    console.log(soln);
   }
 
   // Questions to ask and answer:
   // What is promptInput?
+  // >> user input following user prompt
+  
   // What data type? What does it hold? What does it represent?
+  // console.log(typeof promptInput);
+  // >> object; holds name-value pairs (strings for our numbers and operator);
+  // represents user inputs for num1, num2, and operation
+  
   // How do we read values from it? What syntax?
+  // We can read values using promptInput.key or promptInput[key]
+
   // How can we use it?
+  // We can use the inputs to calculate our output
+  
   // Can we call our existing functions now, inside of this function?
+  // Yes
 }
 
 // Example manual testing of calculator.  
