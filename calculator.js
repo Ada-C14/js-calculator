@@ -10,8 +10,8 @@ const calculateUserInput = function (error, promptInput) {
    // check in valid input 
 
    // convert the numbers to integers
-   const num1 = Number(promptInput.num1)
-   const num2 = Number(promptInput.num2)
+   const num1 = promptInput.num1
+   const num2 = promptInput.num2
    const operation = promptInput.operation
  
  
@@ -31,7 +31,7 @@ const calculateUserInput = function (error, promptInput) {
      switch (operation) {
        case '+':
        case 'add':
-         console.log(`${num1} + ${num2} = ${num1 + num2}`);
+         console.log(`${num1} + ${num2} = ${Number(num1) + Number(num2)}`);
          break;
        case '-':
        case 'subtract':
@@ -59,7 +59,7 @@ const calculateUserInput = function (error, promptInput) {
 
 // Example manual testing of calculator.  
 calculateUserInput({}, {
-  num1: '3',
+  num1: '5',
   num2: '4',
   operation: 'add',
 });
