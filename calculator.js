@@ -31,6 +31,8 @@ const calculateUserInput = function (error, promptInput) {
 
   if (operator === 'add' || operator === '+') {
     console.log(`${num1} + ${num2} = ${num1 + num2}`)
+  } else if (operator === 'subtract' || operator === '-') {
+    console.log(`${num1} - ${num2} = ${num1 - num2}`)
   }
 }
 
