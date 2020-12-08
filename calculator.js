@@ -5,18 +5,6 @@ const exampleAdditionInput = {
   operation: 'add',
 }
 
-const invalidNumInput = {
-  num1: 'a',
-  num2: 5,
-  operation: 'add'
-}
-
-const invalidOpInput = {
-  num1: 3,
-  num2: 5,
-  operation: '?'
-}
-
 const exampleSubtractionInput = {
   num1: 3,
   num2: 5,
@@ -41,15 +29,26 @@ const exampleZeroDivisionInput = {
   operation: 'divide',
 }
 
+const invalidNumInput = {
+  num1: 'a',
+  num2: 5,
+  operation: 'add'
+}
+
+const invalidOpInput = {
+  num1: 3,
+  num2: 5,
+  operation: '?'
+}
 
 function validateNum(num) {
   if (isNaN(num)) {
     console.log(`${num} is not a valid number!`);
-    // return false 
+    return false 
   }
-  // else {
-  //   return true
-  // }
+  else {
+    return num 
+  }
 }
 
 function validateOperator(operator) {
@@ -57,19 +56,23 @@ function validateOperator(operator) {
 
   if (!operators.includes(operator)) {
     console.log(`${operator} is not a valid operator!`);
-    // return false 
+    return false 
   }
-  // else {
-  //   return true 
-  // }
+  else {
+    return operator 
+  }
 }
 
 function divideByZeroCheck(num) {
-  if (num === 0) {
-    return true;
-  }
+  return (num === 0 ? true : false);
+}
+
+function doCalculations(error, promptInput) {
+  if (validateNum(promptInput.num1) && validateNum(promptInput.num2) && validateOperator(promptInput.operation)) {
+    return true
+  } 
   else {
-    return false; 
+    return false 
   }
 }
 
@@ -77,37 +80,73 @@ const calculateUserInput = function (error, promptInput) {
   const num1 = Number(promptInput.num1); 
   const num2 = Number(promptInput.num2); 
   const operator = promptInput.operation; 
+  // const operator = validateOperator(promptInput.operation); 
+  // const num1 = validateNum(Number(promptInput.num1)); 
+  // const num2 = validateNum(Number(promptInput.num2)); 
+  // const operator = validateOperator(promptInput.operation); 
 
-  validateNum(num1);
-  validateNum(num2);
-  validateOperator(operator);
 
 
-  switch (operator) {
-    case 'add':
-    case '+':
-      console.log(`${num1} + ${num2} = ${num1 + num2}`);
-      break;
-    case 'subtract':
-    case '-':
-      console.log(`${num1} - ${num2} = ${num1 - num2}`);
-      break;
-    case 'multiply':
-    case '*':
-      console.log(`${num1} * ${num2} = ${num1 * num2}`);
-      break;
-    case 'divide':
-    case '/': 
-        if (divideByZeroCheck(num2)) {
-          console.log('You cannot divide by zero');
-          break;
-        }
-        else {
-          console.log(`${num1} / ${num2} = ${num1 / num2}`);
-          break;
-        }
+  // validateNum(num1);
+  // validateNum(num2);
+  // validateOperator(operator);
+
+  if (doCalculations(error, promptInput)) {
+    switch (operator) {
+      case 'add':
+      case '+':
+        console.log(`${num1} + ${num2} = ${num1 + num2}`);
+        break;
+      case 'subtract':
+      case '-':
+        console.log(`${num1} - ${num2} = ${num1 - num2}`);
+        break;
+      case 'multiply':
+      case '*':
+        console.log(`${num1} * ${num2} = ${num1 * num2}`);
+        break;
+      case 'divide':
+      case '/': 
+          if (divideByZeroCheck(num2)) {
+            console.log('You cannot divide by zero');
+            break;
+          }
+          else {
+            console.log(`${num1} / ${num2} = ${num1 / num2}`);
+            break;
+          }
+    }
   }
+// else {
+//     console.log('Cannot complete operation due to invalid operator and/or number(s)');
+//   }
 }
+
+//   switch (operator) {
+//     case 'add':
+//     case '+':
+//       console.log(`${num1} + ${num2} = ${num1 + num2}`);
+//       break;
+//     case 'subtract':
+//     case '-':
+//       console.log(`${num1} - ${num2} = ${num1 - num2}`);
+//       break;
+//     case 'multiply':
+//     case '*':
+//       console.log(`${num1} * ${num2} = ${num1 * num2}`);
+//       break;
+//     case 'divide':
+//     case '/': 
+//         if (divideByZeroCheck(num2)) {
+//           console.log('You cannot divide by zero');
+//           break;
+//         }
+//         else {
+//           console.log(`${num1} / ${num2} = ${num1 / num2}`);
+//           break;
+//         }
+//   }
+// }
 
   // Questions to ask and answer:
   // What is promptInput?
@@ -128,7 +167,7 @@ calculateUserInput({}, exampleAdditionInput);
 calculateUserInput({}, exampleSubtractionInput);
 calculateUserInput({}, exampleMultiplicationInput);
 calculateUserInput({}, exampleDivisionInput);
-calculateUserInput({}, exampleZeroDivisionInput);
+calculateUserInput({}, exampleZeroDivisionInput); 
 calculateUserInput({}, invalidNumInput);
 calculateUserInput({}, invalidOpInput);
 
