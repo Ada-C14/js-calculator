@@ -22,8 +22,10 @@ const divide = function(num1, num2) {
 const isNumber = function(num) {
   if (isNaN(num)) {
     console.log(`${num} is not a number`);
-  } else {
+  } else if (parseFloat(num)) {
     return true
+  } else {
+    return console.log('Empty string entered')
   }
 }
 
@@ -74,11 +76,11 @@ const calculateUserInput = function (error, promptInput) {
 }
 
 // Example manual testing of calculator.  
-// calculateUserInput({}, {
-//   num1: 1,
-//   num2: 'apple',
-//   operation: '/',
-// });
+calculateUserInput({}, {
+  num1: 1,
+  num2: '',
+  operation: '+',
+});
 
 
 // This exports the function so index.js can import it.
