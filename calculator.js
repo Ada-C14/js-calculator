@@ -19,16 +19,20 @@ const exampleAdditionInput = {
 
 const calculateUserInput = function (error, promptInput) {
   console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
-  if (isNaN(promptInput.num1)) {
-    return console.log(`${promptInput.num1} is invalid, please try again`);
-  }
-  else if (isNaN(promptInput.num2)) {
-    return console.log(`${promptInput.num2} is invalid, please try again`);
-  };
+  
   let firstNum = parseFloat(promptInput.num1);
   let secondNum = parseFloat(promptInput.num2);
   let operator = promptInput.operation.toLowerCase();
   let result = 0;
+
+  console.log(firstNum)
+  if (isNaN(promptInput.num1) || isNaN(firstNum)) {
+    return console.log(`"${promptInput.num1}" is invalid, please try again`);
+  }
+  else if (isNaN(promptInput.num2) || isNaN(secondNum)) {
+    return console.log(`"${promptInput.num2}" is invalid, please try again`);
+  };
+
   switch (operator) {
     case 'add': case '+':
       result = firstNum + secondNum;
@@ -80,11 +84,11 @@ const power = function(num1, num2) {
 
 
 // Example manual testing of calculator.  
-// calculateUserInput({}, {
-//   num1: 2.3,
-//   num2: 10.5,
-//   operation: 'power',
-// });
+calculateUserInput({}, {
+  num1: '',
+  num2: (5-5),
+  operation: '%',
+});
 
 
 // This exports the function so index.js can import it.
