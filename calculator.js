@@ -21,7 +21,7 @@ const multiply = function(num1, num2) {
 
 const divide = function(num1, num2) {
   if (num2 == 0) {
-    console.log("you can not divide by zero!")
+    console.log('You cannot divide by zero')
   } else {
     console.log(`${num1} / ${num2} = ${Number(num1) / Number(num2)}`) 
   }
@@ -57,9 +57,9 @@ const calculateUserInput = function (error, promptInput) {
       case 'divide':
         console.log(divide(num1, num2));
         break;
-        default:
+      default:
           console.log('unsuported operator!');
-          break
+          break;
     }
   }
 }
