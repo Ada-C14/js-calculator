@@ -15,15 +15,15 @@ const calculateUserInput = function (error, promptInput) {
   // How can we use it? => We need to grab use it by grabbing num1, num2, and operator and creating the necessary calculations.
   // Can we call our existing functions now, inside of this function? => not sure what this is asking
 
-  const num1 = Number(promptInput.num1);
-  const num2 = Number(promptInput.num2);
+  const num1 = parseFloat(promptInput.num1);
+  const num2 = parseFloat(promptInput.num2);
   const operator = promptInput.operation;
- 
+
   if (validateInput(num1) && validateInput(num2)) {
     calculate(num1, num2, operator);
   } else {
-    if (validateInput(num1)) console.log(`${promptInput.num1} is not a valid number`);
-    if (validateInput(num2)) console.log(`${promptInput.num2} is not a valid number`);
+    if (!validateInput(num1)) console.log(`${promptInput.num1} is not a valid number`);
+    if (!validateInput(num2)) console.log(`${promptInput.num2} is not a valid number`);
   }
 };
 
@@ -57,7 +57,7 @@ const calculate = function(num1, num2, operator) {
 // Example manual testing of calculator.  
 // calculateUserInput({}, {
 //   num1: "5",
-//   num2: 0,
+//   num2: null,
 //   operation: '/hello',
 // });
 
