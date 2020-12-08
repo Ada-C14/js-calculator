@@ -28,11 +28,11 @@
 const calculate = function(input) {
   // constant holds key/value pairs to all valid operations
   const opObj = { add: ['+', 'add', 'addition', 'plus'], 
-  subtract: ['-', 'subtract', 'subtraction', 'minus'],
-  multiply: ['*', 'x', 'times', 'multiply', 'multiplication'],
-  divide: ['/', 'divide', 'division'],
-  mod: ['modulus', 'modulo', 'remainder', '%', 'mod'],
-  exponent: ['power', '**', '^', 'exponent']};
+                  subtract: ['-', 'subtract', 'subtraction', 'minus'],
+                  multiply: ['*', 'x', 'times', 'multiply', 'multiplication'],
+                  divide: ['/', 'divide', 'division'],
+                  mod: ['modulus', 'modulo', 'remainder', '%', 'mod'],
+                  exponent: ['power', '**', '^', 'exponent']};
 
   // check that num1 and num2 are valid numbers 
   // note that we don't have parenthetical support yet, i'll have to sit on this a bit and maybe come back to it
