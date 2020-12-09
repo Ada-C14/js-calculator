@@ -26,6 +26,7 @@ const validNum = function (num) {
 const calculateUserInput = function (error, promptInput) {
   let num1;
   let num2;
+  let operator;
   let soln;
   let errors = [];
   
@@ -44,18 +45,22 @@ const calculateUserInput = function (error, promptInput) {
     switch (promptInput.operation) {
       case 'add':
       case '+':
+        operator = '+';
         soln = num1 + num2;
         break;
       case 'subtract':
       case '-':
+        operator = '-';
         soln = num1 - num2;
         break;
       case 'multiply':
       case '*':
+        operator = '*';
         soln = num1 * num2;
         break;
       case 'divide':
       case '/':
+        operator = '/';
         soln = num1 / num2;
         break;
     }
@@ -67,7 +72,7 @@ const calculateUserInput = function (error, promptInput) {
   };
 
   if (soln) {
-    console.log(soln);
+    console.log(`${num1} ${operator} ${num2} = ${soln}`);
   };
 
   // Questions to ask and answer:
