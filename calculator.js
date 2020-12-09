@@ -43,6 +43,9 @@ const checkOperation = function(promptInput) {
       } else {
         return `${num1} / ${num2} = ${num1 / num2}`;
       }
+    case 'exponent':
+    case '^':
+      return `${num1}^${num2} = ${num1 ** num2}`;
     default:
       return 'unsupported operator';
   }
