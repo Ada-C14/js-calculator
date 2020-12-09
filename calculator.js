@@ -23,8 +23,27 @@ const calculateUserInput = function (error, promptInput) {
   // Can we call our existing functions now, inside of this function? 
     /* #yes ↘👾🔥👾🔥👾↙ */
 
-  if (!isNaN(promptInput.num1) || !isNaN(promptInput.num2)) {
-    console.log('input must be a number')
+  const allowableOperators = [
+    'add',
+    '+', 
+    'subtract', 
+    '-', 
+    'multiply', 
+    '*', 
+    'divide', 
+    '-'
+  ];
+
+  if (isNaN(promptInput.num1)) {
+    console.log(`${promptInput.num1} is not a number`);
+    return 
+  } 
+  else if (isNaN(promptInput.num2)) {
+    console.log(`${promptInput.num2} is not a number`);
+    return
+  }
+  else if (!allowableOperators.includes(promptInput.operation )) {
+    console.log('unsupported operator');
     return
   }
 
@@ -40,10 +59,10 @@ const calculateUserInput = function (error, promptInput) {
     return
   } else if (promptInput.operation == 'divide' || promptInput.operation == '/') { 
       if (parseFloat(promptInput.num2) == 0) {
-        console.log('You cannot divide by zero')
+        console.log('You cannot divide by zero');
         return }
       else {
-        console.log(parseFloat(promptInput.num1) / parseFloat(promptInput.num2))
+        console.log(parseFloat(promptInput.num1) / parseFloat(promptInput.num2));
         return
       }
     }
