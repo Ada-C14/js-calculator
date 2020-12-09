@@ -1,28 +1,40 @@
-
-const exampleAdditionInput = {
-  num1: 3,
-  num2: 5,
-  operation: 'add',
-}
-
 const calculateUserInput = function (error, promptInput) {
-  console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
 
-  // Questions to ask and answer:
-  // What is promptInput?
-  // What data type? What does it hold? What does it represent?
-  // How do we read values from it? What syntax?
-  // How can we use it?
-  // Can we call our existing functions now, inside of this function?
+  let num1 = parseInt(promptInput.num1);
+  let num2 = parseInt(promptInput.num2);
+  let operation = promptInput.operation;
+
+  // validate user input
+  if ( isNaN(num1) || isNaN(num2) ) {
+    console.log('Invalid input, please enter numbers only.')
+    return; 
+  } 
+  switch(operation) {
+    case 'add':
+    case '+':
+      console.log(`${num1} + ${num2} = ${num1 + num2}`);
+      break;
+    case 'subtract':
+    case '-':
+      console.log(`${num1} - ${num2} = ${num1 - num2}`);
+      break;
+    case 'multiply':
+    case '*':
+      console.log(`${num1} * ${num2} = ${num1 * num2}`);
+      break;
+    case 'divide':
+    case '/':
+      if (num2 === 0) {
+        console.log('You cannot divide by zero');
+      } else {
+        console.log(`${num1} / ${num2} = ${num1 / num2}`);
+      }
+      break;
+    default:
+      console.log('Please try again.');
+  }
 }
-
-// Example manual testing of calculator.  
-// calculateUserInput({}, {
-//   num1: 3,
-//   num2: 4,
-//   operation: 'add',
-// });
-
 
 // This exports the function so index.js can import it.
 exports.calculateUserInput = calculateUserInput;
+

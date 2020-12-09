@@ -169,5 +169,18 @@ describe('calculateUserInput', () => {
     expect(console.log).toHaveBeenCalled();
     expect(console.log.mock.calls).toContainEqual(['You cannot divide by zero']);
   });
+
+  test('Checks invalid input', () => {
+
+    calculateUserInput({}, {
+      num1: 'a',
+      num2: 'b',
+      operation: '+',
+    });
+
+    expect(console.log).toHaveBeenCalled();
+    expect(console.log.mock.calls).toContainEqual(['Invalid input, please enter numbers only.']);
+  });
 });
+
 
