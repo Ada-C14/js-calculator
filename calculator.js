@@ -14,8 +14,11 @@ const validOps = {
   '%': 'modulo'
 };
 
-const validDivision = function (num) {
-  if (num === 0) {
+const validDivision = function (num, operator) {
+  if (num === 0 && (operator === '/' ||
+                    operator === 'divide' ||
+                    operator === '%' ||
+                    operator === 'modulo')) {
     return false;
   }
 
@@ -57,14 +60,9 @@ const calculateUserInput = function (error, promptInput) {
   if (!validOps[operator]) {
     errors.push('INVALID OPERATOR: Please provide one of the following operators: +, -, *, /');
     passedOperatorCheck = false;
-  } else if (validOps[operator] === 'divide' || 
-             validOps[operator] === '/' ||
-             validOps[operator] === 'modulo' ||
-             validOps[operator] === '%') {
-    if (!validDivision(num2)) {
+  } else if (!validDivision(num2, operator)) {
       errors.push('DIVIDING BY ZERO: Please change num2 so that we do not get a zero division error.');
       passedOperatorCheck = false;
-    }
   }
   
   if (passedNumsCheck && passedOperatorCheck) {
@@ -153,7 +151,7 @@ const calculateUserInput = function (error, promptInput) {
 // calculateUserInput({}, {
 //   num1: 3,
 //   num2: '0',
-//   operation: '/',
+//   operation: '%',
 // });
 
 // This exports the function so index.js can import it.
