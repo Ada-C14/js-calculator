@@ -1,4 +1,3 @@
-
 const validParens = function (num) {
   let parens = [];
   if (num.includes('(') || num.includes(')')) {
@@ -12,8 +11,12 @@ const validParens = function (num) {
       }
     }
 
-    return true;
+    if (parens.length > 0) {
+      return false;
+    }
   }
+  
+  return true;
 };
 
 const validOps = {
@@ -118,7 +121,7 @@ const calculateUserInput = function (error, promptInput) {
     errors.push(`INVALID PARENS: ${origNum1} does not use valid parentheses.`);
     passedParensCheck = false;
   }
-
+  console.log(passedParensCheck)
   if (validNum(num1) && validNum(num2)) {
     num1 = Number(num1);
     num2 = Number(num2);
@@ -158,7 +161,7 @@ exports.calculateUserInput = calculateUserInput;
 
 // Example manual testing of calculator.  
 calculateUserInput({}, {
-  num1: '(3.3)',
+  num1: '3.3)',
   num2: 0,
   // operation: 'AdD'
   operation: '**'
