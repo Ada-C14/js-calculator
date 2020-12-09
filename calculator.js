@@ -1,7 +1,7 @@
 const exampleAdditionInput = {
   num1: 3,
-  num2: 5,
-  operation: 'add',
+  num2: 4.5,
+  operation: 'divide',
 }
 
 const errorHandling = function(input) {
@@ -9,23 +9,30 @@ const errorHandling = function(input) {
   const num1 = input['num1'];
   const num2 = input['num2'];
   const operation = input['operation']
-
-  if (num1 === null || num2 === null || operation === null) {
-    return false;
-  }
-
-  if (operation === 'add' || operation === '+') {
+  
+  // first check for unexpected data...
+  if (num1 === undefined || num2 === undefined || operation === undefined || num2 === '' || num2 === '') {
+    console.log(`Error: Not all pieces of data were received.`)
+    console.log(`Please submit an operation, a num1 and num2.`)
+    return false;  
+  } else if (isNaN(num1) || isNaN(num2)) {
+    console.log(typeof num2)
+    console.log(`Error: Unexpected number data received.`)
+    console.log(`Accepted numbers: positive/negative floats/integers`)
+    return false;  
+  // now, if it passes all those statements, return true for correct operation data
+  } else if (operation === 'add' || operation === '+') {
     return true;
   } else if (operation === 'subtract' || operation === '-') {
     return true;
   } else if (operation === 'multiply' || operation === '*') {
     return true;
   } else if (operation === 'divide' || operation === '/') {
-    return true;
-  } else {
-    console.log(`Something went wrong!`)
+    return true;  
+  // all else fails, account for unexpected operation data
+  } else { 
+    console.log(`Error: Unexpected operation received.`)
     console.log(`Accepted operations: 'add', '+', 'subtract', '-', 'multiply', '*', 'divide', '/'`)
-    console.log(`Accepted numbers: positive/negative floats/integers`)
     return false;
   }  
 }
@@ -41,22 +48,24 @@ const doMath = {
     return `${num1} * ${num2} = ${num1*num2}`;
   },
   divideNums(num1, num2) {
-    return `${num1} + ${num2} = ${num1/num2}`;
+    if (num2 === 0) {
+      return `Error: Cannot divide by zero.`
+    } else {
+      return `${num1} / ${num2} = ${num1/num2}`;
+    }
   },
 }
 
-
-const calculateUserInput = function (error, promptInput) {
+const calculateUserInput = function (error, promptInput) { // I don't understand how to use error here, but when I delete it, code breaks
 
   if (errorHandling(promptInput) === false) {
-    console.log(`Input was not accepted!`)
     return  
   }
 
   const num1 = promptInput['num1'];
   const num2 = promptInput['num2'];
   const operation = promptInput['operation']
-
+  
   switch(operation) { 
     case 'add':
     case '+':
@@ -72,16 +81,6 @@ const calculateUserInput = function (error, promptInput) {
       return console.log(doMath.divideNums(num1, num2));
   }  
 
-  // if (operation === 'add' || operation  === '+') {
-  //   console.log(doMath.addNums(num1, num2))
-  // } else if (operation === 'subtract' || operation === '-') {
-  //   console.log(doMath.subtractNums(num1, num2))
-  // } else if (operation === 'multiply' || operation === '*') {
-  //   console.log(doMath.multiplyNums(num1, num2))
-  // } else if (operation === 'divide' || operation === '/') {
-  //   console.log(doMath.divideNums(num1, num2))
-  // }
-
   // Questions to ask and answer:
   // What is promptInput? the 'user input'
   // What data type? What does it hold? What does it represent? hash, like exampleAdditionInput
@@ -94,7 +93,9 @@ const calculateUserInput = function (error, promptInput) {
 exports.calculateUserInput = calculateUserInput;
 
 // Testing
-calculateUserInput(true, exampleAdditionInput);
+// calculateUserInput(true, exampleAdditionInput);
 
-
-
+// console.log(isNaN('butt'))
+// console.log(isNaN(''))
+// console.log(isNaN(' '))
+// console.log(isNaN('$# *'))
