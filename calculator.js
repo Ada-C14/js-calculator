@@ -6,18 +6,18 @@ const exampleAdditionInput = {
 
 const errorHandling = function(input) {
 
-  let num1 = input['num1'];
-  let num2 = input['num2'];
+  const num1 = input['num1'];
+  const num2 = input['num2'];
   const operation = input['operation']
   
   // check for unexpected data...
   if (num1 === undefined || num2 === undefined || operation === undefined || num2 === '' || num2 === '') {
-    console.log(`Error: Not all pieces of data were received.`)
-    console.log(`Please submit an operation, a num1 and num2.`)
+    console.log(`Error: Not all pieces of data were received.`);
+    console.log(`Please submit an operation, a num1 and num2.`);
     return false;  
   } else if (isNaN(num1) || isNaN(num2)) {
-    console.log(`Error: Unexpected number data received.`)
-    console.log(`Accepted numbers: positive/negative floats/integers`)
+    console.log(`Error: Unexpected number data received.`);
+    console.log(`Accepted numbers: positive/negative floats/integers`);
     return false;  
   // now, if it passes all those statements, return true for correct operation data
   } else if (operation === 'add' || operation === '+') {
@@ -30,8 +30,8 @@ const errorHandling = function(input) {
     return true;  
   // all else fails, account for unexpected operation data
   } else { 
-    console.log(`Error: Unexpected operation received.`)
-    console.log(`Accepted operations: 'add', '+', 'subtract', '-', 'multiply', '*', 'divide', '/'`)
+    console.log(`Error: Unexpected operation received.`);
+    console.log(`Accepted operations: 'add', '+', 'subtract', '-', 'multiply', '*', 'divide', '/'`);
     return false;
   }  
 }
@@ -48,7 +48,7 @@ const doMath = {
   },
   divideNums(num1, num2) {
     if (num2 === 0) {
-      return `You cannot divide by zero`
+      return `You cannot divide by zero`;
     } else {
       return `${num1} / ${num2} = ${num1/num2}`;
     }
@@ -58,12 +58,12 @@ const doMath = {
 const calculateUserInput = function (error, promptInput) { // I don't use error here, but when I delete it, test code fails
 
   if (errorHandling(promptInput) === false) {
-    return  
+    return;  
   }
 
   let num1 = promptInput['num1'];
   let num2 = promptInput['num2'];
-  const operation = promptInput['operation']
+  const operation = promptInput['operation'];
 
   // account for passing in '4' instead of 4 
   if (typeof num1 === 'string') {
