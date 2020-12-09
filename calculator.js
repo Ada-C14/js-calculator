@@ -51,11 +51,6 @@ const calculateUserInput = function (error, promptInput) {
         console.log( `${first} / ${second} = ${result}`); 
       }
       break;
-    case `exponent`:
-    case `^`:
-      result = Math.pow(first, second);
-      console.log(`${first} ^ ${second} = ${result}`);
-      break;
     case `modulo`:
     case `%`:
       if (second === 0) {
