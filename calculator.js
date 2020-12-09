@@ -1,6 +1,17 @@
+// TO:DO:
+
 // This program only allows for single parentheses
 // (3+5) --> OK
 // (3+5)*(6+3) --> not covered
+
+// This program does NOT allow more than one operation in an expression
+// No order of operations followed
+
+// This program doesn't allow expressions without enclosing parens
+// (3+5) --> OK
+// 3+5 --> NO
+
+//////////////////////////////////////////////////
 
 const validParens = function (num) {
   let parens = [];
