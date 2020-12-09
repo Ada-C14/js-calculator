@@ -55,7 +55,6 @@ const printResults = function(num1, num2, operation, result) {
 
 //chose to use this as my 'calculate' function
 const calculateUserInput = function (error, promptInput) {
-  console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
 
 const num1 = parseFloat(promptInput.num1);
 const num2 = parseFloat(promptInput.num2);
@@ -63,9 +62,9 @@ const operation = promptInput.operation;
 
   //validate user input
   if (!validNumber(promptInput.num1)) {
-    return console.log(`${promptInput.num1} is not a number`);
+    return console.log(`${promptInput.num1} is not a number.`);
   } else if (!validNumber(promptInput.num2)) {
-    return console.log(`${promptInput.num2} is not a number`);
+    return console.log(`${promptInput.num2} is not a number.`);
   }
   // if (!validOperation(operation)) {
   //   return;
