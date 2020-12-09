@@ -7,15 +7,46 @@ const exampleAdditionInput = {
 // '3 + 5 = 8'
 
 const calculateUserInput = function (error, promptInput) {
-  console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
+  if (!checkNumber(promptInput.num1)) {
+    console.log(`${promptInput.num1} is not a number.`);
+  } else if (!checkNumber(promptInput.num2)) {
+    console.log(`${promptInput.num2} is not a number.`);
+  } else {
+    console.log(checkOperation(promptInput));
+    return null;
+  }
+};
 
-  // Questions to ask and answer:
-  // What is promptInput?
-  // What data type? What does it hold? What does it represent?
-  // How do we read values from it? What syntax?
-  // How can we use it?
-  // Can we call our existing functions now, inside of this function?
-}
+const checkNumber = function(num) {
+  const regex = /^-?[0-9]+$/;
+  return regex.test(num);
+};
+
+const checkOperation = function(promptInput) {
+  const num1 = Number(promptInput.num1);
+  const num2 = Number(promptInput.num2);
+
+  switch (promptInput.operation) {
+    case 'add':
+    case '+':
+      return `${num1} + ${num2} = ${num1 + num2}`;
+    case 'subtract':
+    case '-':
+      return `${num1} - ${num2} = ${num1 - num2}`;
+    case 'multiply':
+    case '*':
+      return `${num1} * ${num2} = ${num1 * num2}`;
+    case 'divide':
+    case '/':
+      if (num2 === 0) {
+        return 'You cannot divide by zero';
+      } else {
+        return `${num1} / ${num2} = ${num1 / num2}`;
+      }
+    default:
+      return 'unsupported operator';
+  }
+};
 
 // Example manual testing of calculator.  
 calculateUserInput({}, {
