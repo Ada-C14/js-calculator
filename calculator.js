@@ -6,13 +6,22 @@ const validOps = {
   multiply: '*',
   '*': 'multiply',
   divide: '/',
-  '/': 'divide'
+  '/': 'divide',
+  exponent: ['^', '**'],
+  '^': 'exponent',
+  '**': 'exponent',
+  modulo: '%',
+  '%': 'modulo'
 };
 
-const validDivision = function (num) {
-  if (num === 0) {
+const validDivision = function (num, operator) {
+  if (num === 0 && (operator === '/' ||
+                    operator === 'divide' ||
+                    operator === '%' ||
+                    operator === 'modulo')) {
     return false;
   }
+
   return true;
 };
 
@@ -23,64 +32,86 @@ const validNum = function (num) {
     return false;
   } else if (Number.isNaN(temp)) {
     return false;
-  } else if (temp === 0 && !(temp == num)) {
+  } else if (temp === 0 && temp == num && num !== '0' && num !== 0) {
     return false;
-  };
+  }
 
   return true;
 };
 
+const computeExpression = function (num1, num2, operator, soln) {
+  switch (operator) {
+    case 'add':
+    case '+':
+      operator = '+';
+      soln = num1 + num2;
+      break;
+    case 'subtract':
+    case '-':
+      operator = '-';
+      soln = num1 - num2;
+      break;
+    case 'multiply':
+    case '*':
+      operator = '*';
+      soln = num1 * num2;
+      break;
+    case 'divide':
+    case '/':
+      operator = '/';
+      soln = num1 / num2;
+      break;
+    case 'exponent':
+    case '**':
+    case '^':
+      operator = '^';
+      soln = num1 ** num2;
+      break;
+    case 'modulo':
+    case '%':
+      operator = '%';
+      soln = num1 % num2;
+      break;
+  }
+
+  return { operator, soln };
+};
+
 const calculateUserInput = function (error, promptInput) {
-  let num1;
-  let num2;
-  let operator;
+  let num1 = promptInput.num1;
+  let num2 = promptInput.num2;
+  let origNum1 = num1;
+  let origNum2 = num2;
+  let operator = promptInput.operation.toLowerCase();
   let soln;
-  let passedNumsCheck;
+  let passedNumsCheck = true;
   let passedOperatorCheck = true;
   let errors = [];
   
-  if (validNum(promptInput.num1) && validNum(promptInput.num2)) {
-    num1 = Number(promptInput.num1);
-    num2 = Number(promptInput.num2);
-    passedNumsCheck = true;
+  // check if includes parens
+  // check valid parens else skip all the rest
+  // if valid, solve until one num then move on to rest
+
+  if (validNum(num1) && validNum(num2)) {
+    num1 = Number(num1);
+    num2 = Number(num2);
   } else {
     errors.push('INVALID NUMBER: One of the input numbers is invalid.');
     passedNumsCheck = false;
   }
-
-  if (!validOps[promptInput.operation]) {
+  
+  if (!validOps[operator]) {
     errors.push('INVALID OPERATOR: Please provide one of the following operators: +, -, *, /');
     passedOperatorCheck = false;
-  } else if (validOps[promptInput.operation] === 'divide' || validOps[promptInput.operation] == '/') {
-    if (!validDivision(num2)) {
+  } else if (!validDivision(num2, operator)) {
       errors.push('DIVIDING BY ZERO: Please change num2 so that we do not get a zero division error.');
       passedOperatorCheck = false;
-    }
   }
   
   if (passedNumsCheck && passedOperatorCheck) {
-    switch (promptInput.operation) {
-      case 'add':
-      case '+':
-        operator = '+';
-        soln = num1 + num2;
-        break;
-      case 'subtract':
-      case '-':
-        operator = '-';
-        soln = num1 - num2;
-        break;
-      case 'multiply':
-      case '*':
-        operator = '*';
-        soln = num1 * num2;
-        break;
-      case 'divide':
-      case '/':
-        operator = '/';
-        soln = num1 / num2;
-        break;
-    }
+    computation = computeExpression(num1, num2, operator, soln);
+    operator = computation.operator;
+    soln = computation.soln;
   } else {
     console.log(`Woops! We've encountered errors:`);
     for (error in errors) {
@@ -89,10 +120,44 @@ const calculateUserInput = function (error, promptInput) {
   }
 
   if (passedNumsCheck && passedOperatorCheck && !(soln === null)) {
-    console.log(`${num1} ${operator} ${num2} = ${soln}`);
+    console.log(`${origNum1} ${operator} ${origNum2} = ${soln}`);
   }
+};
 
-  // Questions to ask and answer:
+// This exports the function so index.js can import it.
+exports.calculateUserInput = calculateUserInput;
+
+//////////////////////////////////////////////////
+
+// Example manual testing of calculator.  
+// calculateUserInput({}, {
+//   num1: 3.3,
+//   num2: 0,
+//   // operation: 'AdD'
+//   operation: '**'
+// });
+
+// calculateUserInput({}, {
+//   num1: 5,
+//   num2: 'dog',
+//   operation: '/',
+// });
+
+// calculateUserInput({}, {
+//   num1: 3,
+//   num2: '+',
+//   operation: 'butt',
+// });
+
+// calculateUserInput({}, {
+//   num1: 3,
+//   num2: '0',
+//   operation: '%',
+// });
+
+//////////////////////////////////////////////////
+
+// Questions to ask and answer:
   // What is promptInput?
   // >> user input following user prompt
   
@@ -109,7 +174,3 @@ const calculateUserInput = function (error, promptInput) {
   
   // Can we call our existing functions now, inside of this function?
   // Yes
-}
-
-// This exports the function so index.js can import it.
-exports.calculateUserInput = calculateUserInput;
