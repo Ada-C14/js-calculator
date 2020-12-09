@@ -39,33 +39,60 @@ const exampleDivisionInput2 = {
   operation: '/',
 }
 
-const calculateUserInput = function (error, promptInput) {
-  // console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
-
-  promptInput.num1 = Number(promptInput.num1);
-  promptInput.num2 = Number(promptInput.num2);
+const translateOperator = function(promptInput) {
+  const validOperators = ['+', '-', '*', '/'];
   promptInput.operation = promptInput.operation.toLowerCase();
-
-  let result;
   switch(promptInput.operation) {
-    /* eslint-disable no-fallthrough */
     case 'add':
       promptInput.operation = '+';
-    case '+':
-      result = promptInput.num1 + promptInput.num2;
       break;
     case 'subtract':
       promptInput.operation = '-';
-    case '-':
-      result =  promptInput.num1 - promptInput.num2;
       break;
     case 'multiply':
       promptInput.operation = '*';
-    case '*':
-      result = promptInput.num1 * promptInput.num2;
       break;
     case 'divide':
       promptInput.operation = '/';
+      break;
+  }
+
+  if (validOperators.includes(promptInput.operation)) {
+    return promptInput;
+  } else {
+   console.log('unsupported operator');
+   return null;
+  }
+}
+
+const calculateUserInput = function (error, promptInput) {
+  // console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
+
+  if (promptInput.num1 != Number(promptInput.num1)) {
+    console.log(`${promptInput.num1} is not a number.`)
+    return null;
+  } else if (promptInput.num2 != Number(promptInput.num2)) {
+    console.log(`${promptInput.num2} is not a number.`)
+    return null;
+  }
+
+  promptInput.num1 = Number(promptInput.num1);
+  promptInput.num2 = Number(promptInput.num2);
+  if (translateOperator(promptInput) == null) {
+    return null;
+  }
+
+  let result;
+  switch(promptInput.operation) {
+    case '+':
+      result = promptInput.num1 + promptInput.num2;
+      break;
+    case '-':
+      result =  promptInput.num1 - promptInput.num2;
+      break;
+    case '*':
+      result = promptInput.num1 * promptInput.num2;
+      break;
     case '/':
       if (promptInput.num2 == 0) {
         console.log('You cannot divide by zero');
