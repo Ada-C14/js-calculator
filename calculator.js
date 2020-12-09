@@ -1,7 +1,7 @@
 const exampleAdditionInput = {
-  num1: 3,
-  num2: 5,
-  operation: 'add',
+  num1: 'hi there',
+  num2: 0,
+  operation: 'hello',
 }
 
 const addNums = function(a, b) {
