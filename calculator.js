@@ -32,9 +32,9 @@ const calculateUserInput = function(error, promptInput){
   const operation = promptInput.operation
   const firstNum = parseInt(promptInput.num1)
   const secondNum = parseInt(promptInput.num2)
-  const operators = ["add", "+", "subtract", "-", "divide", "/", "multiply", "*"]
+  const operators = ['add', '+', 'subtract', '-', 'divide', '/', 'multiply', '*']
   
-  if (firstNum === NaN || secondNum === NaN || operators.includes(operation) === false){
+  if (!(isNaN(firstNum) || isNaN(secondNum) || operators.includes(operation))) {
     console.log('Input was invalid.')
     return
   } else if (operation === 'add' || operation === '+') {
