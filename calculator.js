@@ -1,7 +1,16 @@
+const exampleAdditionInput = {
+  num1: 3,
+  num2: 5,
+  operation: 'add',
+}
+
 function validateNum(num) {
   if (isNaN(num)) {
     console.log(`${num} is not a valid number!`);
     return false 
+  } 
+  else if (num === '') {
+    console.log('Number cannot be blank!');
   }
   else {
     return true 
@@ -34,11 +43,10 @@ function doCalculations(error, promptInput) {
 }
 
 const calculateUserInput = function (error, promptInput) {
-  const num1 = Number(promptInput.num1); 
-  const num2 = Number(promptInput.num2); 
-  const operator = promptInput.operation; 
-
   if (doCalculations(error, promptInput)) {
+    const num1 = Number(promptInput.num1); 
+    const num2 = Number(promptInput.num2); 
+    const operator = promptInput.operation; 
     switch (operator) {
       case 'add':
       case '+':
@@ -79,6 +87,8 @@ const calculateUserInput = function (error, promptInput) {
     }
   }
 }
+
+calculateUserInput({}, exampleAdditionInput);
 
 // This exports the function so index.js can import it.
 exports.calculateUserInput = calculateUserInput;
