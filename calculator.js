@@ -1,3 +1,7 @@
+// This program only allows for single parentheses
+// (3+5) --> OK
+// (3+5)*(6+3) --> not covered
+
 const validParens = function (num) {
   let parens = [];
   for (const char of num) {
@@ -17,18 +21,36 @@ const validParens = function (num) {
   return true;
 };
 
+const reduceParensExpression = function(num) {
+  num = num.replace('(', '');
+  num = num.replace(')', '');
+  
+  for (op in validOps) {
+    if (num.includes(op)) {
+      const tempInput = num.split(op);
+      const tempNum1 = tempInput[0];
+      const tempNum2 = tempInput[2];
+      const tempOp = tempInput[1];
+      const tempSoln = computeWithValidations(tempNum1, tempNum2, tempOp); 
+      return tempSoln;
+    }
+  }
+
+  return num;
+}
+
 const validOps = {
   add: '+',
   '+': 'add',
   subtract: '-',
   '-': 'subtract',
+  exponent: ['^', '**'],
+  '^': 'exponent',
+  '**': 'exponent',
   multiply: '*',
   '*': 'multiply',
   divide: '/',
   '/': 'divide',
-  exponent: ['^', '**'],
-  '^': 'exponent',
-  '**': 'exponent',
   modulo: '%',
   '%': 'modulo'
 };
@@ -96,53 +118,34 @@ const computeExpression = function (num1, num2, operator, soln) {
   return { operator, soln };
 };
 
-const calculateUserInput = function (error, promptInput) {
-  let num1 = promptInput.num1;
-  let num2 = promptInput.num2;
-  let origNum1 = num1;
-  let origNum2 = num2;
-  let operator = promptInput.operation.toLowerCase();
+const computeWithValidations = function (num1, num2, operator) {
+  let num1Temp = num1;
+  let num2Temp = num2;
+  let operatorTemp = operator;
   let soln;
   let passedNumsCheck = true;
   let passedOperatorCheck = true;
-  let passedParensCheck = true;
   let errors = [];
-  
-  // check if includes parens (one num at a time)
-  // check valid parens else skip all the rest
-  // if valid, solve until one num then move on to rest
-  // if (num1.includes('(') || num1.includes(')')) {
-  //   if (!validParens(num1))
-  // }
-  
-  if (num1.includes('(') || num1.includes(')')) {
-    if (!validParens(num1)) {
-      errors.push(`INVALID PARENS: ${origNum1} does not use valid parentheses.`);
-      passedParensCheck = false;
-    } else {
 
-    }
-  }
-  // console.log(passedParensCheck)
-  if (validNum(num1) && validNum(num2)) {
-    num1 = Number(num1);
-    num2 = Number(num2);
+  if (validNum(num1Temp) && validNum(num2Temp)) {
+    num1Temp = Number(num1Temp);
+    num2Temp = Number(num2Temp);
   } else {
     errors.push('INVALID NUMBER: One of the input numbers is invalid.');
     passedNumsCheck = false;
   }
   
-  if (!validOps[operator]) {
+  if (!validOps[operatorTemp]) {
     errors.push('INVALID OPERATOR: Please provide one of the following operators: +, -, *, /');
     passedOperatorCheck = false;
-  } else if (!validDivision(num2, operator)) {
+  } else if (!validDivision(num2Temp, operatorTemp)) {
       errors.push('DIVIDING BY ZERO: Please change num2 so that we do not get a zero division error.');
       passedOperatorCheck = false;
   }
   
   if (passedNumsCheck && passedOperatorCheck) {
-    computation = computeExpression(num1, num2, operator, soln);
-    operator = computation.operator;
+    computation = computeExpression(num1Temp, num2Temp, operatorTemp, soln);
+    operatorTemp = computation.operatorTemp;
     soln = computation.soln;
   } else {
     console.log(`Woops! We've encountered errors:`);
@@ -151,8 +154,56 @@ const calculateUserInput = function (error, promptInput) {
     }
   }
 
-  if (passedNumsCheck && passedOperatorCheck && !(soln === null)) {
-    console.log(`${origNum1} ${operator} ${origNum2} = ${soln}`);
+  return {soln: soln, errors: errors}
+};
+
+const calculateUserInput = function (error, promptInput) {
+  let num1 = promptInput.num1;
+  let num2 = promptInput.num2;
+  let origNum1 = num1;
+  let origNum2 = num2;
+  let operator = promptInput.operation.toLowerCase();
+  let passedParensCheck = true;
+  
+  if (num1.includes('(') || num1.includes(')')) {
+    if (!validParens(num1)) {
+      errors.push(`INVALID PARENS: ${origNum1} does not use valid parentheses.`);
+      passedParensCheck = false;
+    } else {
+      num1Reduced = reduceParensExpression(num1);
+      if (num1Reduced.soln) {
+        num1 = num1Reduced.soln;
+        if (num1Reduced.errors.length > 0) {
+          return;
+        }
+      } else {
+        num1 = num1Reduced;
+      }
+    }
+  }
+
+  if (num2.includes('(') || num2.includes(')')) {
+    if (!validParens(num2)) {
+      errors.push(`INVALID PARENS: ${origNum2} does not use valid parentheses.`);
+      passedParensCheck = false;
+    } else {
+      num2Reduced = reduceParensExpression(num2);
+      num2 = num2Reduced.soln;
+      if (num2Reduced.soln) {
+        num2 = num2Reduced.soln;
+        if (num2Reduced.errors.length > 0) {
+          return;
+        }
+      } else {
+        num2 = num2Reduced;
+      }
+    }
+  }
+
+  reducedExpression = computeWithValidations(num1, num2, operator);
+
+  if (reducedExpression.errors.length === 0) {
+      console.log(`${origNum1} ${operator} ${origNum2} = ${reducedExpression.soln}`);
   }
 };
 
@@ -164,7 +215,7 @@ exports.calculateUserInput = calculateUserInput;
 // Example manual testing of calculator.  
 calculateUserInput({}, {
   num1: '(3.3)',
-  num2: 0,
+  num2: '0',
   // operation: 'AdD'
   operation: '**'
 });
