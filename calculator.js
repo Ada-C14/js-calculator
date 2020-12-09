@@ -111,24 +111,5 @@ const calculateUserInput = function (error, promptInput) {
   // Yes
 }
 
-// // Example manual testing of calculator.  
-calculateUserInput({}, {
-  num1: 3,
-  num2: 0,
-  operation: 'divide',
-});
-
-// calculateUserInput({}, {
-//   num1: 5,
-//   num2: 'dog',
-//   operation: '/',
-// });
-
-// calculateUserInput({}, {
-//   num1: 3,
-//   num2: '+',
-//   operation: 'butt',
-// });
-
 // This exports the function so index.js can import it.
 exports.calculateUserInput = calculateUserInput;
