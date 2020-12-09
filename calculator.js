@@ -58,7 +58,6 @@ const calculateUserInput = function (error, promptInput) {
 //   operation: 'add',
 // });
 
-//solution
 const addNums = function(a,b){ 
   let sum = parseInt(a) + parseInt(b)
   console.log(`${a} + ${b} = ${sum}`) ;
