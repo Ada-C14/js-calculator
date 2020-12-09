@@ -23,7 +23,7 @@ const validNum = function (num) {
     return false;
   } else if (Number.isNaN(temp)) {
     return false;
-  } else if (temp === 0 && temp == num && num !== '0') {
+  } else if (temp === 0 && temp == num && num !== '0' && num !== 0) {
     return false;
   };
 
@@ -33,7 +33,7 @@ const validNum = function (num) {
 const calculateUserInput = function (error, promptInput) {
   let num1;
   let num2;
-  let operator;
+  let operator = promptInput.operation.toLowerCase();
   let soln;
   let passedNumsCheck;
   let passedOperatorCheck = true;
@@ -48,11 +48,11 @@ const calculateUserInput = function (error, promptInput) {
     passedNumsCheck = false;
   }
   
-  if (!validOps[promptInput.operation.toLowerCase()]) {
+  if (!validOps[operator]) {
     errors.push('INVALID OPERATOR: Please provide one of the following operators: +, -, *, /');
     passedOperatorCheck = false;
-  } else if (validOps[promptInput.operation.toLowerCase()] === 'divide' || 
-             validOps[promptInput.operation.toLowerCase()] == '/') {
+  } else if (validOps[operator] === 'divide' || 
+             validOps[operator] == '/') {
     if (!validDivision(num2)) {
       errors.push('DIVIDING BY ZERO: Please change num2 so that we do not get a zero division error.');
       passedOperatorCheck = false;
@@ -60,7 +60,7 @@ const calculateUserInput = function (error, promptInput) {
   }
   
   if (passedNumsCheck && passedOperatorCheck) {
-    switch (promptInput.operation) {
+    switch (operator) {
       case 'add':
       case '+':
         operator = '+';
@@ -116,7 +116,7 @@ const calculateUserInput = function (error, promptInput) {
 // calculateUserInput({}, {
 //   num1: 3,
 //   num2: 0,
-//   operation: 'Divide',
+//   operation: 'AdD',
 // });
 
 // calculateUserInput({}, {
@@ -125,11 +125,11 @@ const calculateUserInput = function (error, promptInput) {
 //   operation: '/',
 // });
 
-// calculateUserInput({}, {
-//   num1: 3,
-//   num2: '+',
-//   operation: 'butt',
-// });
+calculateUserInput({}, {
+  num1: 3,
+  num2: '+',
+  operation: 'butt',
+});
 
 // This exports the function so index.js can import it.
 exports.calculateUserInput = calculateUserInput;
