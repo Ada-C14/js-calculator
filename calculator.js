@@ -20,7 +20,15 @@ const calculateUserInput = function (error, promptInput) {
       }
     },
     '**': function (num1, num2){ return num1 ** num2},
-    '%': function (num1, num2){ return num1 % num2}
+    '%': function (num1, num2){ 
+      if(num2 === 0){
+        return 'zeromod';
+      }
+      else{
+        return num1 % num2;
+      }
+      
+    }
   };
 
   const operators = {
@@ -62,6 +70,9 @@ const output = function(operator, operation, num1, num2){
 
     if(solution === 'zerodiv'){
       return 'You cannot divide by zero';
+    }
+    else if(solution === 'zeromod'){
+      return 'You cannot modulo by zero';
     }
     else{
       return `${num1} ${operator} ${num2} = ${solution}`;

@@ -297,6 +297,17 @@ describe('calculateUserInput', () => {
     expect(console.log.mock.calls).toContainEqual(['You cannot divide by zero']);
   });
 
+  test('Can catch moduloByZero errors', () => {
+
+    calculateUserInput({}, {
+      num1: '15',
+      num2: '0',
+      operation: '%',
+    });
+
+    expect(console.log).toHaveBeenCalled();
+    expect(console.log.mock.calls).toContainEqual(['You cannot modulo by zero']);
+  });
   test('Can catch when numbers are invalid types', () => {
 
     calculateUserInput({}, {
