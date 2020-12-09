@@ -51,20 +51,6 @@ const calculateUserInput = function (error, promptInput) {
   const operator = operators[promptInput.operation.toLowerCase()];
   const operation = operations[operator];
   console.log(output(operator, operation, num1, num2))
-  // if(operation === undefined) {
-  //   console.log('Operation is invalid.');
-  // }
-  // else {
-  //   const solution = operation(parseInt(num1), parseInt(num2));
-
-  //   if(solution === 'zerodiv'){
-  //     console.log('You cannot divide by zero');
-  //   }
-  //   else{
-  //     console.log(`${num1} ${operator} ${num2} = ${solution}`);
-  //   }
-
-  // } 
 }
 
 const output = function(operator, operation, num1, num2){
