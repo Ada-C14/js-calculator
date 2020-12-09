@@ -39,9 +39,49 @@ const validNum = function (num) {
   return true;
 };
 
+const computeExpression = function (num1, num2, operator, soln) {
+  switch (operator) {
+    case 'add':
+    case '+':
+      operator = '+';
+      soln = num1 + num2;
+      break;
+    case 'subtract':
+    case '-':
+      operator = '-';
+      soln = num1 - num2;
+      break;
+    case 'multiply':
+    case '*':
+      operator = '*';
+      soln = num1 * num2;
+      break;
+    case 'divide':
+    case '/':
+      operator = '/';
+      soln = num1 / num2;
+      break;
+    case 'exponent':
+    case '**':
+    case '^':
+      operator = '^';
+      soln = num1 ** num2;
+      break;
+    case 'modulo':
+    case '%':
+      operator = '%';
+      soln = num1 % num2;
+      break;
+  }
+
+  return { operator, soln };
+};
+
 const calculateUserInput = function (error, promptInput) {
   let num1 = promptInput.num1;
   let num2 = promptInput.num2;
+  let origNum1 = num1;
+  let origNum2 = num2;
   let operator = promptInput.operation.toLowerCase();
   let soln;
   let passedNumsCheck = true;
@@ -65,39 +105,9 @@ const calculateUserInput = function (error, promptInput) {
   }
   
   if (passedNumsCheck && passedOperatorCheck) {
-    switch (operator) {
-      case 'add':
-      case '+':
-        operator = '+';
-        soln = num1 + num2;
-        break;
-      case 'subtract':
-      case '-':
-        operator = '-';
-        soln = num1 - num2;
-        break;
-      case 'multiply':
-      case '*':
-        operator = '*';
-        soln = num1 * num2;
-        break;
-      case 'divide':
-      case '/':
-        operator = '/';
-        soln = num1 / num2;
-        break;
-      case 'exponent':
-      case '**':
-      case '^':
-        operator = '^';
-        soln = num1 ** num2;
-        break;
-      case 'modulo':
-      case '%':
-        operator = '%';
-        soln = num1 % num2;
-        break;
-    }
+    computation = computeExpression(num1, num2, operator, soln);
+    operator = computation.operator;
+    soln = computation.soln;
   } else {
     console.log(`Woops! We've encountered errors:`);
     for (error in errors) {
@@ -106,35 +116,22 @@ const calculateUserInput = function (error, promptInput) {
   }
 
   if (passedNumsCheck && passedOperatorCheck && !(soln === null)) {
-    console.log(`${num1} ${operator} ${num2} = ${soln}`);
+    console.log(`${origNum1} ${operator} ${origNum2} = ${soln}`);
   }
+};
 
-  // Questions to ask and answer:
-  // What is promptInput?
-  // >> user input following user prompt
-  
-  // What data type? What does it hold? What does it represent?
-  // console.log(typeof promptInput);
-  // >> object; holds name-value pairs (strings for our numbers and operator);
-  // represents user inputs for num1, num2, and operation
-  
-  // How do we read values from it? What syntax?
-  // We can read values using promptInput.key or promptInput[key]
+// This exports the function so index.js can import it.
+exports.calculateUserInput = calculateUserInput;
 
-  // How can we use it?
-  // We can use the inputs to calculate our output
-  
-  // Can we call our existing functions now, inside of this function?
-  // Yes
-}
+//////////////////////////////////////////////////
 
 // Example manual testing of calculator.  
-calculateUserInput({}, {
-  num1: 3.3,
-  num2: 0,
-  // operation: 'AdD'
-  operation: '**'
-});
+// calculateUserInput({}, {
+//   num1: 3.3,
+//   num2: 0,
+//   // operation: 'AdD'
+//   operation: '**'
+// });
 
 // calculateUserInput({}, {
 //   num1: 5,
@@ -154,5 +151,22 @@ calculateUserInput({}, {
 //   operation: '%',
 // });
 
-// This exports the function so index.js can import it.
-exports.calculateUserInput = calculateUserInput;
+//////////////////////////////////////////////////
+
+// Questions to ask and answer:
+  // What is promptInput?
+  // >> user input following user prompt
+  
+  // What data type? What does it hold? What does it represent?
+  // console.log(typeof promptInput);
+  // >> object; holds name-value pairs (strings for our numbers and operator);
+  // represents user inputs for num1, num2, and operation
+  
+  // How do we read values from it? What syntax?
+  // We can read values using promptInput.key or promptInput[key]
+
+  // How can we use it?
+  // We can use the inputs to calculate our output
+  
+  // Can we call our existing functions now, inside of this function?
+  // Yes
