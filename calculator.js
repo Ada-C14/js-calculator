@@ -1,8 +1,23 @@
-
 const exampleAdditionInput = {
   num1: 3,
   num2: 5,
   operation: 'add',
+}
+
+function getValidOperator(operator) {
+  const operators = [ 'add', '+', 'subtract', '-', 'multiply', '*', 'divide', '/']
+
+  if (operators.includes(operator)){
+    return operator;
+  }
+  return undefined;
+}
+
+function getValidNums(number) {
+  if (isNaN) {
+    return parseInt(number);
+  }
+  return undefined;
 }
 
 const calculateUserInput = function (error, promptInput) {
@@ -14,14 +29,70 @@ const calculateUserInput = function (error, promptInput) {
   // How do we read values from it? What syntax?
   // How can we use it?
   // Can we call our existing functions now, inside of this function?
+
+  let num1 = getValidNums(promptInput.num1);
+    if (num1 == null) {
+      console.log(`Invalid input: ${promptInput.num1}`)
+    }
+
+  let num2 = getValidNums(promptInput.num2);
+    if (num2 == null) {
+      console.log(`Invalid input: ${promptInput.num2}`)
+    }
+
+  let operator = getValidOperator(promptInput.operation);
+    if (operator == null) {
+      console.log(`Invalid operator: ${promptInput.operation}`);
+    }
+
+    const addNums = function(num1, num2) {
+      return num1 + num2;
+    };
+
+    const subtractNums = function(num1, num2) {
+      return num1 - num2;
+    };
+      
+    const multiplyNums = function(num1, num2) {
+      return num1 * num2;
+    };
+      
+    const divideNums = function(num1, num2) {
+      return num1 / num2;
+    };
+    
+    switch  (operator) {
+      case 'add':
+      case '+':
+        console.log(addNums(num1, num2));
+        break;
+      case 'subtract':
+      case '-':
+        console.log(subtractNums(num1, num2));
+        break;
+      case 'multiply':
+      case '*':
+        console.log(multiplyNums(num1, num2));
+        break;
+      case 'divive':
+      case '/':
+        if (num2 == 0){
+          console.log(`You cannot divide by zero`)
+        }
+        console.log(divideNums(num1, num2));
+        break;
+    
+    }
+    
 }
 
+
 // Example manual testing of calculator.  
-// calculateUserInput({}, {
-//   num1: 3,
-//   num2: 4,
-//   operation: 'add',
-// });
+calculateUserInput({}, {
+  num1: 3,
+  num2: 4,
+  operation: '-',
+});
 
 
 // This exports the function so index.js can import it.
