@@ -7,7 +7,7 @@ const exampleAdditionInput = {
 
 const calculateUserInput = function (error, promptInput) {
   // console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
-  const reg = /\(\d[-+\/*]\d\)/;
+  const reg = /\(\d+[-+\/*]\d+\)/;
   let num1 = '';
   let num2 = '';
   if ((reg.test(promptInput.num1) === true) && (reg.test(promptInput.num2) === true)) {
