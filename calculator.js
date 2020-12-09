@@ -23,7 +23,11 @@ const calculateUserInput = function (error, promptInput) {
   const num2 = promptInput.num2;
   const operation = promptInput.operation;
 
-  if (isNumber(num1) && isNumber(num2)) {
+  if (!isNumber(num1)) {
+    console.log(`${ num1 } is not a number`);
+  } else if (!isNumber(num2)) {
+    console.log(`${ num2 } is not a number`);
+  } else {
     switch (operation) {
       case 'add':
       case '+':
@@ -64,10 +68,6 @@ const calculateUserInput = function (error, promptInput) {
       default:
         console.log('unsupported operator');
     }
-  } else if (!isNumber(num1)) {
-    console.log(`${ num1 } is not a number`);
-  } else if (!isNumber(num2)) {
-    console.log(`${ num2 } is not a number`);
   }
 }  
 
