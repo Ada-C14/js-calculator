@@ -6,7 +6,7 @@ const calculateUserInput = function (error, promptInput) {
 
   // validate user input
   if ( isNaN(num1) || isNaN(num2) ) {
-    console.log('Invalid input, please enter numbers only.')
+    console.log('Invalid input, please enter numbers only.');
     return; 
   } 
   switch(operation) {
