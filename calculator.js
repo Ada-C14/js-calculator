@@ -40,18 +40,17 @@ const validNum = function (num) {
 };
 
 const calculateUserInput = function (error, promptInput) {
-  let num1;
-  let num2;
+  let num1 = promptInput.num1;
+  let num2 = promptInput.num2;
   let operator = promptInput.operation.toLowerCase();
   let soln;
-  let passedNumsCheck;
+  let passedNumsCheck = true;
   let passedOperatorCheck = true;
   let errors = [];
   
-  if (validNum(promptInput.num1) && validNum(promptInput.num2)) {
-    num1 = Number(promptInput.num1);
-    num2 = Number(promptInput.num2);
-    passedNumsCheck = true;
+  if (validNum(num1) && validNum(num2)) {
+    num1 = Number(num1);
+    num2 = Number(num2);
   } else {
     errors.push('INVALID NUMBER: One of the input numbers is invalid.');
     passedNumsCheck = false;
@@ -130,11 +129,12 @@ const calculateUserInput = function (error, promptInput) {
 }
 
 // Example manual testing of calculator.  
-// calculateUserInput({}, {
-//   num1: 3,
-//   num2: 0,
-//   operation: 'AdD',
-// });
+calculateUserInput({}, {
+  num1: 3.3,
+  num2: 0,
+  // operation: 'AdD'
+  operation: '**'
+});
 
 // calculateUserInput({}, {
 //   num1: 5,
