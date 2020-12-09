@@ -17,14 +17,6 @@ const calculateUserInput = function (error, promptInput) {
   // How can we use it?
   // Can we call our existing functions now, inside of this function?
 
-  // if (promptInput.operation === 'add') {
-  //   add(promptInput.num1, promptInput.num2); 
-  // } else if (promptInput.operation === 'multiply') 
-  // { multiply(promptInput.num1, promptInput.num2) }
-  // else if (promptInput.operation === 'subtract') {
-  //   subtract(promptInput.num1, promptInput.num2)
-  // }
-
     if (isNaN(promptInput.num1)) {
       console.log(`${promptInput.num1} is not a number.`);
       return;
