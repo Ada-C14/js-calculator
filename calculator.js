@@ -1,53 +1,6 @@
-
-const exampleAdditionInput = {
-  num1: 3,
-  num2: 0,
-  operation: 'divide',
-}
-
 const calculateUserInput = function (error, promptInput) {
-
-  const operations = {
-    '+': function (num1, num2){ return num1 + num2},
-    '-': function (num1, num2){ return num1 - num2},
-    '*': function (num1, num2){ return num1 * num2},
-    '/': function (num1, num2){ 
-      if(num2 === 0){
-        return 'zerodiv';
-      }
-      else{
-        return num1 / num2;
-      }
-    },
-    '**': function (num1, num2){ return num1 ** num2},
-    '%': function (num1, num2){ 
-      if(num2 === 0){
-        return 'zeromod';
-      }
-      else{
-        return num1 % num2;
-      }
-      
-    }
-  };
-
-  const operators = {
-    add: '+',
-    '+' : '+',
-    subtract: '-',
-    '-' : '-',
-    multiply: '*',
-    '*' : '*',
-    'x' : '*',
-    divide: '/',
-    '/': '/', 
-    '**': '**',
-    '^': '**',
-    'to the power of': '**',
-    '%': '%',
-    modulo: '%'
-  };
-
+  const operations = constructOperations; 
+  const operators = constructOperators; 
   const num1 = parseInt(promptInput.num1);
   const num2 = parseInt(promptInput.num2);
 
@@ -81,6 +34,41 @@ const output = function(operator, operation, num1, num2){
 
   } 
 }
-calculateUserInput(1, exampleAdditionInput);
 
+const constructOperations = new function(){
+  const operations = {
+    '+': function (num1, num2){ return num1 + num2},
+    '-': function (num1, num2){ return num1 - num2},
+    '*': function (num1, num2){ return num1 * num2},
+    '/': function (num1, num2){ 
+      if(num2 === 0){
+        return 'zerodiv';
+      }
+      else{
+        return num1 / num2;
+      }
+    },
+    '**': function (num1, num2){ return num1 ** num2},
+    '%': function (num1, num2){ 
+      if(num2 === 0){
+        return 'zeromod';
+      }
+      else{
+        return num1 % num2;
+      }
+    }
+  };
+  return operations;
+}
+
+const constructOperators = new function(){
+  const operators = {};
+  operators.add = operators['+'] = '+';
+  operators.subtract = operators['-'] = '-';
+  operators.multiply = operators['*'] = operators['x'] = '*';
+  operators.divide = operators['/'] = '/';
+  operators['to the power of'] = operators['**'] = operators['^'] = '**';
+  operators.modulo = operators['%'] = '%';
+  return operators;
+}
 exports.calculateUserInput = calculateUserInput;
