@@ -1,8 +1,8 @@
-// const exampleAdditionInput = {
-//   num1: 30,
-//   num2: 10,
-//   operation: 'subtract',
-// }
+const userInput = {
+  num1: 30,
+  num2: 10,
+  operation: 'subtract',
+}
 
 const addNums = function(a, b) {
   return `${a} + ${b} = ${a + b}`;
@@ -56,7 +56,7 @@ const calculate = function(input) {
   }
 };
 
-// calculate(exampleAdditionInput)
+calculate(userInput)
 
 const calculateUserInput = function (error, promptInput) {
   // console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
