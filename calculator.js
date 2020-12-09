@@ -34,15 +34,22 @@ const printOutput = function (a, b, operation) {
   console.log(`${a} ${operation.name} ${b} = ${operation.do(a, b)}`);
 }
 
-const calculateUserInput = function (errors, input) {
-  if (isNaN(input.num1)) {
-    console.log(`${input.num1} is not a number.`);
+const verifyNumbers = function (a, b) {
+  if (isNaN(a)) {
+    console.log(`${a} is not a number.`);
     return false;
-  } else if (isNaN(input.num2)) {
-    console.log(`${input.num2} is not a number.`);
+  } else if (isNaN(b)) {
+    console.log(`${b} is not a number.`);
     return false;
   }
-  
+
+  return true;
+}
+
+const calculateUserInput = function (errors, input) {
+  if (!verifyNumbers(input.num1, input.num2)) {
+    return false;
+  }
   switch(input.operation) {
     case 'add':
     case '+':
