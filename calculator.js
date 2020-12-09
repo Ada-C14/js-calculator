@@ -88,6 +88,10 @@ const calculateUserInput = function (error, promptInput) {
   let passedOperatorCheck = true;
   let errors = [];
   
+  // check if includes parens
+  // check valid parens else skip all the rest
+  // if valid, solve until one num then move on to rest
+
   if (validNum(num1) && validNum(num2)) {
     num1 = Number(num1);
     num2 = Number(num2);
