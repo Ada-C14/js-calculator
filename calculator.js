@@ -1,30 +1,19 @@
 
-const exampleAdditionInput = {
-  num1: '3a',
-  num2: 5.,
-  operation: 'addd',
-}
+// there are 2 sections, validation functions and calculation function
 
+// Section 1: validation functions start
 function validationController(input) {
-  // try { 
-    if (!numValid(input.num1)) {
-    // throw `${input.num1} is not a valid number. Please re-enter`
-console.log('1')
-    }
-    if (!numValid(input.num2)) {
-    // throw `${input.num2} is not a valid number. Please re-enter`
-    console.log('2')
-    }
-    if (!opValid(input.operation)) {
-    // throw `${input.num2} is not a valid operation. Please re-enter`
-    console.log('3')
-    }
-  // }
-// catch(err) {err + 'is not valid. Please re-enter'}
+  let errors = ''
 
-  // catch(err) {}
-//   console.error(e.name);
-  // console.log(err.message);
+  if (!numValid(input.num1)) { errors += (`${input.num1} is not a valid number. `) }
+  if (!numValid(input.num2)) { errors += (`${input.num2} is not a valid number. `) }
+  if (!opValid(input.operation)) { errors += (`${input.operation} is not a valid operation.`) }
+
+  if (errors.length > 0) {
+    console.log(`Cannot proceed due to the following errors: ${errors}`)}
+    else {
+      calculate(input)
+  }
 }
 
 function numValid(num) {
@@ -36,40 +25,59 @@ function opValid(operation) {
   let ops = ['add', 'subtract', 'multiply', 'divide', 'mod', '+', '-', '*', '/', '%'];
   return (ops.includes(operation)); 
 }
+// end of validation functions
 
-validationController (exampleAdditionInput)
-
-function calculate (input) {
+// Section 2: calculation function
+function calculate(input) {
   switch(input.operation) {
-    case 'add' || '+':
-      console.log(input.num1 + input.num2);
+    case 'add':
+    case '+':
+      console.log(`${input.num1} + ${input.num2} = ${input.num1*1 + input.num2*1}`);
       break;
 
-    case 'subtract' || '-':
-      console.log(input.num1 - input.num2);
+    case 'subtract':
+    case '-':
+      console.log(`${input.num1} - ${input.num2} = ${input.num1*1 - input.num2*1}`);
       break;
 
-    case 'multiply' || '*':
-      console.log(input.num1 * input.num2);
+    case 'multiply':
+    case '*':
+      console.log(`${input.num1} * ${input.num2} = ${(input.num1*1) * (input.num2*1)}`);
       break;
 
-    case 'divide' || '/':
-      console.log(input.num1 / input.num2);
+    case 'divide':
+    case '/':
+      if (input.num2*1 === 0) {
+        console.log('You cannot divide by zero')
+      }
+        else 
+          {console.log(`${input.num1} / ${input.num2} = ${(input.num1*1) / (input.num2*1)}`)}
       break;
+    
+    case 'mod':
+    case '%':
+        if (input.num2*1 === 0) {
+          console.log('Mod uses division and you cannot divide by zero')
+        }
+          else 
+            {console.log(`${input.num1} % ${input.num2} = ${(input.num1*1) % (input.num2*1)}`)}
+        break;
   }
 }
-
-calculate (exampleAdditionInput)
+// end of calculation function
 
 const calculateUserInput = function (error, promptInput) {
-  console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
+
+validationController(promptInput)
+
+  // console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
 
   // Questions to ask and answer:
-  // What is promptInput?
-  // What data type? What does it hold? What does it represent?
-  // How do we read values from it? What syntax?
-  // How can we use it?
-  // Can we call our existing functions now, inside of this function?
+  // What is promptInput? Variable that got passed in by the prompt.
+  // What data type? What does it hold? What does it represent? Object data type. Holds name:value pairs. It represents user input (2 nums and an operator).
+  // How do we read values from it? What syntax? Can use [] or .
+  // How can we use it? Can use it similarly to a Ruby hash.
+  // Can we call our existing functions now, inside of this function? Yes.
 }
 
 // Example manual testing of calculator.  
