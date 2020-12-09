@@ -1,27 +1,120 @@
 
-const exampleAdditionInput = {
-  num1: 3,
-  num2: 5,
-  operation: 'add',
+// const exampleAdditionInput = {
+//   num1: 3,
+//   num2: 5,
+//   operation: 'add',
+// }
+// // '3 + 5 = 8'
+
+
+const addNums = function(a, b) {
+  return `${a} + ${b} = ${a + b}`;
 }
-// '3 + 5 = 8'
+
+const subtractNums = function(a, b) {
+  return `${a} - ${b} = ${(a - b)}`;
+}
+
+const multiplyNums = function(a, b) {
+  return `${a} * ${b} = ${(a * b)}`;
+}
+
+const divideNums = function(a, b) {
+  return `${a} / ${b} = ${(a / b)}`;
+}
+
+const notNumber = function(a, b) {
+  
+  if (isNaN(a)) { 
+    return `${a} is not a number.`
+  } else {
+    return `${b} is not a number.`
+  }
+  
+}
 
 const calculateUserInput = function (error, promptInput) {
-  console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
+  // console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
+  
+  const a = Number(promptInput.num1);
+  const b = Number(promptInput.num2);
 
-  // Questions to ask and answer:
-  // What is promptInput?
-  // What data type? What does it hold? What does it represent?
-  // How do we read values from it? What syntax?
-  // How can we use it?
-  // Can we call our existing functions now, inside of this function?
+  if (isNaN(a) || isNaN(b)) {
+
+    console.log(notNumber(promptInput.num1, promptInput.num2));
+
+  } else if (promptInput.operation === 'add' || promptInput.operation === '+') {
+
+    console.log(addNums(a, b));
+
+  } else if (promptInput.operation === 'divide' || promptInput.operation === '/') {
+    
+      if (b === 0) {
+        console.log('You cannot divide by zero')
+      } else {console.log(divideNums(a, b)); }
+
+  } else if (promptInput.operation === 'multiply' || promptInput.operation === '*') {
+
+    console.log(multiplyNums(a, b));
+  
+  } else if (promptInput.operation === 'subtract' || promptInput.operation === '-') {
+
+    console.log(subtractNums(a, b)); 
+
+  } else {
+    
+    console.log('unsupported operator');
+
+  }
 }
 
-// Example manual testing of calculator.  
+// testing 'add'  
+calculateUserInput({}, {
+  num1: '3',
+  num2: '4',
+  operation: 'add',
+});
+// testing '+'
 calculateUserInput({}, {
   num1: 3,
   num2: 4,
-  operation: 'add',
+  operation: '+',
+});
+// testing 'divide'
+calculateUserInput({}, {
+  num1: 4,
+  num2: 2,
+  operation: 'divide',
+});
+// testing '/'
+calculateUserInput({}, {
+  num1: 3,
+  num2: 4,
+  operation: '/',
+});
+// testing 'multiply'
+calculateUserInput({}, {
+  num1: 3,
+  num2: 4,
+  operation: 'multiply',
+});
+// testing '*'
+calculateUserInput({}, {
+  num1: 3,
+  num2: 4,
+  operation: '*',
+});
+// testing 'subtract'
+calculateUserInput({}, {
+  num1: 3,
+  num2: 4,
+  operation: 'subtract',
+});
+// testing '-'
+calculateUserInput({}, {
+  num1: 3,
+  num2: 4,
+  operation: '-',
 });
 
 // This exports the function so index.js can import it.
