@@ -25,19 +25,14 @@
 
 const calculateUserInput = function(error, promptInput){
   const operation = promptInput.operation
-  let firstNum = promptInput.num1
-  let secondNum = promptInput.num2
+  const firstNum = parseInt(promptInput.num1)
+  const secondNum = parseInt(promptInput.num2)
 
-  // const operators = ["add", "+", "subtract", "-", "divide", "/", "multiply", "*"]
-  // if ((parseInt(firstNum) == NaN)|| (parseInt(secondNum) == NaN) || (operators.includes(operation))) {
-  //   console.log('input was invalid')
-  // } else {
-  //   firstNum = parseInt(firstNum)
-  //   secondNum = parseInt(secondNum)
-  // }
-
-
-  if (operation === 'add' || operation === '+') {
+  const operators = ["add", "+", "subtract", "-", "divide", "/", "multiply", "*"]
+  if (firstNum === NaN || secondNum === NaN || operators.includes(operation) === false){
+    console.log('input was invalid')
+    return
+  } else if (operation === 'add' || operation === '+') {
     addNums(firstNum, secondNum)
   } else if (operation === 'subtract' || operation === '-') {
     subtractNums(firstNum, secondNum)
@@ -52,30 +47,29 @@ const calculateUserInput = function(error, promptInput){
 }
 
 const multiplyNums = function(num1, num2) {
-  // return num1 * num2
-  let total = parseInt(num1) * parseInt(num2)
+  let total = num1 * num2
   console.log(`${num1} * ${num2} = ${total}`);
   return total
 }
 const divideNums = function(num1, num2) {
-  // return num1/num2
-  if (parseInt(num2) == 0) {
+  if (num2 == 0) {
     console.log(`You cannot divide by zero`);
     return
   }
-  let total = parseInt(num1) / parseInt(num2)
+  let total = num1 / num2
   console.log(`${num1} / ${num2} = ${total}`);
   return total
 }
 const addNums = function(num1, num2) {
-
-   let total = parseInt(num1) + parseInt(num2)
+  let total = num1 + num2
   console.log(`${num1} + ${num2} = ${total}`);
   return total
 }
 
 const subtractNums = function(num1, num2) {
-  return num1 - num2
+  let total = num1 - num2
+  console.log(`${num1} - ${num2} = ${total}`);
+  return total
 }
 
 
