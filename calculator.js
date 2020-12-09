@@ -1,22 +1,21 @@
 const exampleAdditionInput = {
-  num1: 3,
-  num2: 4.5,
-  operation: 'divide',
+  num1: '3',
+  num2: '4',
+  operation: '+',
 }
 
 const errorHandling = function(input) {
 
-  const num1 = input['num1'];
-  const num2 = input['num2'];
+  let num1 = input['num1'];
+  let num2 = input['num2'];
   const operation = input['operation']
   
-  // first check for unexpected data...
+  // check for unexpected data...
   if (num1 === undefined || num2 === undefined || operation === undefined || num2 === '' || num2 === '') {
     console.log(`Error: Not all pieces of data were received.`)
     console.log(`Please submit an operation, a num1 and num2.`)
     return false;  
   } else if (isNaN(num1) || isNaN(num2)) {
-    console.log(typeof num2)
     console.log(`Error: Unexpected number data received.`)
     console.log(`Accepted numbers: positive/negative floats/integers`)
     return false;  
@@ -49,22 +48,35 @@ const doMath = {
   },
   divideNums(num1, num2) {
     if (num2 === 0) {
-      return `Error: Cannot divide by zero.`
+      return `You cannot divide by zero`
     } else {
       return `${num1} / ${num2} = ${num1/num2}`;
     }
   },
 }
 
-const calculateUserInput = function (error, promptInput) { // I don't understand how to use error here, but when I delete it, code breaks
+const calculateUserInput = function (error, promptInput) { // I don't use error here, but when I delete it, test code fails
 
   if (errorHandling(promptInput) === false) {
     return  
   }
 
-  const num1 = promptInput['num1'];
-  const num2 = promptInput['num2'];
+  let num1 = promptInput['num1'];
+  let num2 = promptInput['num2'];
   const operation = promptInput['operation']
+
+  // account for passing in '4' instead of 4 
+  if (typeof num1 === 'string') {
+    if (typeof Number(num1) === 'number') {
+    num1 = Number(num1);
+    }
+  } 
+  
+  if (typeof num2 === 'string') {
+    if (typeof Number(num2) === 'number') {
+    num2 = Number(num2);
+    }  
+  }
   
   switch(operation) { 
     case 'add':
@@ -92,10 +104,5 @@ const calculateUserInput = function (error, promptInput) { // I don't understand
 // This exports the function so index.js can import it.
 exports.calculateUserInput = calculateUserInput;
 
-// Testing
+// Manual Testing --->
 // calculateUserInput(true, exampleAdditionInput);
-
-// console.log(isNaN('butt'))
-// console.log(isNaN(''))
-// console.log(isNaN(' '))
-// console.log(isNaN('$# *'))
