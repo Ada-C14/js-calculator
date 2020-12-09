@@ -1,6 +1,6 @@
 // TO:DO:
 
-// This program only allows for single parentheses
+// This program only allows for single set of parentheses
 // (3+5) --> OK
 // (3+5)*(6+3) --> not covered
 
@@ -52,7 +52,9 @@ const reduceParensExpression = function(num) {
 
 const evalParens = function (num, origNum, errors) {
   if (!validParens(num)) {
-    errors.push(`INVALID PARENS: ${origNum} does not use valid parentheses.`);
+    error = `INVALID PARENS: ${origNum} does not use valid parentheses.`;
+    console.log(error);
+    errors += error;
   } else {
     numReduced = reduceParensExpression(num);
     if (numReduced.soln) {
@@ -63,7 +65,7 @@ const evalParens = function (num, origNum, errors) {
     }
   }
 
-  return {num: num, errors: errors};
+  return { num, errors };
 };
 
 const validOps = {
@@ -166,13 +168,13 @@ const computeWithValidations = function (num1, num2, operator) {
     errors.push('INVALID OPERATOR: Please provide one of the following operators: +, -, *, /');
     passedOperatorCheck = false;
   } else if (!validDivision(num2Temp, operatorTemp)) {
-      errors.push('DIVIDING BY ZERO: Please change num2 so that we do not get a zero division error.');
-      passedOperatorCheck = false;
+    errors.push('DIVIDING BY ZERO: Please change num2 so that we do not get a zero division error.');
+    passedOperatorCheck = false;
   }
   
   if (passedNumsCheck && passedOperatorCheck) {
     computation = computeExpression(num1Temp, num2Temp, operatorTemp, soln);
-    operatorTemp = computation.operatorTemp;
+    operatorTemp = computation.operator;
     soln = computation.soln;
   } else {
     console.log(`Woops! We've encountered errors:`);
@@ -181,7 +183,7 @@ const computeWithValidations = function (num1, num2, operator) {
     }
   }
 
-  return {soln: soln, errors: errors}
+  return { soln, errors, operatorTemp }
 };
 
 const calculateUserInput = function (error, promptInput) {
@@ -194,6 +196,7 @@ const calculateUserInput = function (error, promptInput) {
 
   if (num1.includes('(') || num1.includes(')')) {
     evalOutput = evalParens(num1, origNum1, errors);
+    num1 = evalOutput.num;
     errors += evalOutput.errors;
     if (errors.length > 0) {
       return;
@@ -202,15 +205,18 @@ const calculateUserInput = function (error, promptInput) {
 
   if (num2.includes('(') || num2.includes(')')) {
     evalOutput = evalParens(num2, origNum2, errors);
+    num2 = evalOutput.num;
     errors += evalOutput.errors;
     if (errors.length > 0) {
       return;
     }
   }
-
+  
   reducedExpression = computeWithValidations(num1, num2, operator);
+  operator = reducedExpression.operatorTemp;
+  errors += reducedExpression.errors;
 
-  if (reducedExpression.errors.length === 0) {
+  if (errors.length === 0) {
       console.log(`${origNum1} ${operator} ${origNum2} = ${reducedExpression.soln}`);
   }
 };
@@ -221,12 +227,12 @@ exports.calculateUserInput = calculateUserInput;
 //////////////////////////////////////////////////
 
 // // Example manual testing of calculator.  
-// calculateUserInput({}, {
-//   num1: '(3.3)',
-//   num2: '0',
-//   // operation: 'AdD'
-//   operation: '**'
-// });
+calculateUserInput({}, {
+  num1: '(3.3)',
+  num2: '0',
+  operation: 'AdD'
+  // operation: '**'
+});
 
 // calculateUserInput({}, {
 //   num1: 5,
