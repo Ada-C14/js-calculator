@@ -40,8 +40,8 @@ const reduceParensExpression = function(num) {
     if (num.includes(op)) {
       const tempInput = num.split(op);
       const tempNum1 = tempInput[0];
-      const tempNum2 = tempInput[2];
-      const tempOp = tempInput[1];
+      const tempNum2 = tempInput[1];
+      const tempOp = op;
       const tempSoln = computeWithValidations(tempNum1, tempNum2, tempOp); 
       return tempSoln;
     }
@@ -57,7 +57,7 @@ const evalParens = function (num, origNum, errors) {
     errors += error;
   } else {
     numReduced = reduceParensExpression(num);
-    if (numReduced.soln) {
+    if (numReduced.soln || numReduced.soln === 0) {
       num = numReduced.soln;
       errors += numReduced.errors;
     } else {
@@ -95,7 +95,7 @@ const validDivision = function (num, operator) {
   return true;
 };
 
-const validNum = function (num) {
+const validNum = function (num, errors) {
   const temp = Number(num);
   
   if (typeof(temp) != 'number') {
@@ -148,33 +148,36 @@ const computeExpression = function (num1, num2, operator, soln) {
 };
 
 const computeWithValidations = function (num1, num2, operator) {
-  let num1Temp = num1;
-  let num2Temp = num2;
-  let operatorTemp = operator;
   let soln;
   let passedNumsCheck = true;
   let passedOperatorCheck = true;
   let errors = [];
 
-  if (validNum(num1Temp) && validNum(num2Temp)) {
-    num1Temp = Number(num1Temp);
-    num2Temp = Number(num2Temp);
+  if (validNum(num1)) {
+    num1 = Number(num1);
   } else {
-    errors.push('INVALID NUMBER: One of the input numbers is invalid.');
+    errors.push(`INVALID NUMBER: ${num1} is not a valid number.`);
+    passedNumsCheck = false;
+  }
+
+  if (validNum(num2)) {
+    num2 = Number(num2);
+  } else {
+    errors.push(`INVALID NUMBER: ${num2} is not a valid number.`);
     passedNumsCheck = false;
   }
   
-  if (!validOps[operatorTemp]) {
+  if (!validOps[operator]) {
     errors.push('INVALID OPERATOR: Please provide one of the following operators: +, -, *, /');
     passedOperatorCheck = false;
-  } else if (!validDivision(num2Temp, operatorTemp)) {
+  } else if (!validDivision(num2, operator)) {
     errors.push('DIVIDING BY ZERO: Please change num2 so that we do not get a zero division error.');
     passedOperatorCheck = false;
   }
   
   if (passedNumsCheck && passedOperatorCheck) {
-    computation = computeExpression(num1Temp, num2Temp, operatorTemp, soln);
-    operatorTemp = computation.operator;
+    computation = computeExpression(num1, num2, operator, soln);
+    operator = computation.operator;
     soln = computation.soln;
   } else {
     console.log(`Woops! We've encountered errors:`);
@@ -183,7 +186,7 @@ const computeWithValidations = function (num1, num2, operator) {
     }
   }
 
-  return { soln, errors, operatorTemp }
+  return { soln, errors, operator }
 };
 
 const calculateUserInput = function (error, promptInput) {
@@ -195,7 +198,7 @@ const calculateUserInput = function (error, promptInput) {
   let errors = [];
 
   if (num1.includes('(') || num1.includes(')')) {
-    evalOutput = evalParens(num1, origNum1, errors);
+    const evalOutput = evalParens(num1, origNum1, errors);
     num1 = evalOutput.num;
     errors += evalOutput.errors;
     if (errors.length > 0) {
@@ -204,7 +207,7 @@ const calculateUserInput = function (error, promptInput) {
   }
 
   if (num2.includes('(') || num2.includes(')')) {
-    evalOutput = evalParens(num2, origNum2, errors);
+    const evalOutput = evalParens(num2, origNum2, errors);
     num2 = evalOutput.num;
     errors += evalOutput.errors;
     if (errors.length > 0) {
@@ -213,7 +216,7 @@ const calculateUserInput = function (error, promptInput) {
   }
   
   reducedExpression = computeWithValidations(num1, num2, operator);
-  operator = reducedExpression.operatorTemp;
+  operator = reducedExpression.operator;
   errors += reducedExpression.errors;
 
   if (errors.length === 0) {
@@ -227,27 +230,29 @@ exports.calculateUserInput = calculateUserInput;
 //////////////////////////////////////////////////
 
 // // Example manual testing of calculator.  
-calculateUserInput({}, {
-  num1: '(3.3)',
-  num2: '0',
-  operation: 'AdD'
-  // operation: '**'
-});
+// calculateUserInput({}, {
+//   num1: '(3.3 * 45)',
+//   // num2: '0',
+//   num2: '(890-890)',
+//   // operation: 'AdD'
+//   // operation: 'dividE'
+//   operation: '**'
+// });
 
 // calculateUserInput({}, {
-//   num1: 5,
+//   num1: '5',
 //   num2: 'dog',
 //   operation: '/',
 // });
 
 // calculateUserInput({}, {
-//   num1: 3,
+//   num1: '3',
 //   num2: '+',
 //   operation: 'butt',
 // });
 
 // calculateUserInput({}, {
-//   num1: 3,
+//   num1: '3',
 //   num2: '0',
 //   operation: '%',
 // });
