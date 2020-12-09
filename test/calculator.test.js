@@ -157,7 +157,53 @@ describe('calculateUserInput', () => {
     expect(console.log).toHaveBeenCalled();
     expect(console.log.mock.calls).toContainEqual(['-15 / 3 = -5']);
   });
+  test('3 ** 2 = 9', () => {
 
+    calculateUserInput({}, {
+      num1: '3',
+      num2: '2',
+      operation: '**',
+    });
+
+    expect(console.log).toHaveBeenCalled();
+    expect(console.log.mock.calls).toContainEqual(['3 ** 2 = 9']);
+  });
+
+  test('3 to the power of 2 = 9', () => {
+
+    calculateUserInput({}, {
+      num1: '3',
+      num2: '2',
+      operation: 'to the power of',
+    });
+
+    expect(console.log).toHaveBeenCalled();
+    expect(console.log.mock.calls).toContainEqual(['3 ** 2 = 9']);
+  });
+
+  test('9 % 3 = 0', () => {
+
+    calculateUserInput({}, {
+      num1: '9',
+      num2: '3',
+      operation: '%',
+    });
+
+    expect(console.log).toHaveBeenCalled();
+    expect(console.log.mock.calls).toContainEqual(['9 % 3 = 0']);
+  });
+
+  test('9 modulo 3 = 0', () => {
+
+    calculateUserInput({}, {
+      num1: '9',
+      num2: '3',
+      operation: 'modulo',
+    });
+
+    expect(console.log).toHaveBeenCalled();
+    expect(console.log.mock.calls).toContainEqual(['9 % 3 = 0']);
+  });
   test('Can catch divideByZero errors', () => {
 
     calculateUserInput({}, {
@@ -168,6 +214,30 @@ describe('calculateUserInput', () => {
 
     expect(console.log).toHaveBeenCalled();
     expect(console.log.mock.calls).toContainEqual(['You cannot divide by zero']);
+  });
+
+  test('Can catch when numbers are invalid types', () => {
+
+    calculateUserInput({}, {
+      num1: null,
+      num2: '0',
+      operation: '/',
+    });
+
+    expect(console.log).toHaveBeenCalled();
+    expect(console.log.mock.calls).toContainEqual(['Number is invalid']);
+  });
+
+  test('Can catch when numbers are invalid strings', () => {
+
+    calculateUserInput({}, {
+      num1: 'frankfurter',
+      num2: '0',
+      operation: '/',
+    });
+
+    expect(console.log).toHaveBeenCalled();
+    expect(console.log.mock.calls).toContainEqual(['Number is invalid']);
   });
 });
 
