@@ -5,8 +5,8 @@ const exampleAdditionInput = {
   operation: 'add',
 }
 
-const prompt = require(`prompt`);
-prompt.start();
+// const prompt = require(`prompt`);
+// prompt.start();
 
 const isInteger = function(input) {
   if (isNaN(input)) console.log(`"${input}" is not a number`);
