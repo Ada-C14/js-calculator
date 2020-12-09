@@ -112,11 +112,11 @@ const calculateUserInput = function (error, promptInput) {
 }
 
 // // Example manual testing of calculator.  
-calculateUserInput({}, {
-  num1: 3,
-  num2: 0,
-  operation: 'divide',
-});
+// calculateUserInput({}, {
+//   num1: 3,
+//   num2: 0,
+//   operation: 'divide',
+// });
 
 // calculateUserInput({}, {
 //   num1: 5,
