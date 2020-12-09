@@ -81,15 +81,15 @@ const calculateUserInput = function (error, promptInput) {
     }
 
     case 'divide':
-    case '/': 
-    if (num2 === 0) {
-      console.log('You cannot divide by zero')
-      return false;
-    } else {
-      const result = num1 / num2;
-      console.log(`${num1} / ${num2} = ${result}`);
-      return result;
-    }
+    case '/':
+      if (num2 === 0) {
+        console.log('You cannot divide by zero')
+        return false;
+      } else {
+        const result = num1 / num2;
+        console.log(`${num1} / ${num2} = ${result}`);
+        return result;
+      }
       break;
     default:
       console.log(`${promptInput.operation} is not supported.`);
@@ -105,7 +105,7 @@ const calculateUserInput = function (error, promptInput) {
   // How can we use it?
   // We can use it to access properties of the input. 
   // Can we call our existing functions now, inside of this function?
-    // Yes
+  // Yes
 }
 
 // Example manual testing of calculator.  
