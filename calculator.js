@@ -90,11 +90,11 @@ const calculateUserInput = function (error, promptInput) {
 }
 
 // Example manual testing of calculator.  
-calculateUserInput({}, {
-  num1: 3,
-  num2: 4,
-  operation: 'add',
-});
+// calculateUserInput({}, {
+//   num1: 3,
+//   num2: 4,
+//   operation: 'add',
+// });
 
 // calculateUserInput({}, {
 //   num1: null,
