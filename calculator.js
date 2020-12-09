@@ -1,25 +1,36 @@
-
 const exampleAdditionInput = {
   num1: 3,
   num2: 5,
-  operation: 'butt',
+  operation: 'add',
 }
 
-const errorHandling = function() {
-  if (exampleAdditionInput['operation'] === 'add' || exampleAdditionInput['operation'] === '+') {
+const errorHandling = function(input) {
+
+  const num1 = input['num1'];
+  const num2 = input['num2'];
+  const operation = input['operation']
+
+  if (num1 === null || num2 === null || operation === null) {
     return false;
-  } else if (exampleAdditionInput['operation'] === 'subtract' || exampleAdditionInput['operation'] === '-') {
-    return false;
-  } else if (exampleAdditionInput['operation'] === 'multiply' || exampleAdditionInput['operation'] === '*') {
-    return false;
-  } else if (exampleAdditionInput['operation'] === 'divide' || exampleAdditionInput['operation'] === '/') {
-    return false;
-  } else {
+  }
+
+  if (operation === 'add' || operation === '+') {
     return true;
+  } else if (operation === 'subtract' || operation === '-') {
+    return true;
+  } else if (operation === 'multiply' || operation === '*') {
+    return true;
+  } else if (operation === 'divide' || operation === '/') {
+    return true;
+  } else {
+    console.log(`Something went wrong!`)
+    console.log(`Accepted operations: 'add', '+', 'subtract', '-', 'multiply', '*', 'divide', '/'`)
+    console.log(`Accepted numbers: positive/negative floats/integers`)
+    return false;
   }  
 }
 
-const doMath = { // hash to store all the operation functions
+const doMath = {
   addNums(num1, num2) {
     return `${num1} + ${num2} = ${num1+num2}`;
   },
@@ -35,48 +46,52 @@ const doMath = { // hash to store all the operation functions
 }
 
 
-const calculateUserInput = function (errorHandling, promptInput) {
-  // console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
+const calculateUserInput = function (error, promptInput) {
 
-  // console.log(`The operation was: ${promptInput['operation']}`)
-  // console.log(`The first number was: ${promptInput['num1']}`)
-  // console.log(`The operation was: ${promptInput['num2']}`)
-  if (errorHandling === true) {
+  if (errorHandling(promptInput) === false) {
     console.log(`Input was not accepted!`)
-    return
+    return  
   }
 
-  if (exampleAdditionInput['operation'] === 'add' || exampleAdditionInput['operation'] === '+') {
-    console.log(doMath.addNums(exampleAdditionInput['num1'], exampleAdditionInput['num2']))
-  } else if (exampleAdditionInput['operation'] === 'subtract' || exampleAdditionInput['operation'] === '-') {
-    console.log(doMath.subtractNums(exampleAdditionInput['num1'], exampleAdditionInput['num2']))
-  } else if (exampleAdditionInput['operation'] === 'multiply' || exampleAdditionInput['operation'] === '*') {
-    console.log(doMath.multiplyNums(exampleAdditionInput['num1'], exampleAdditionInput['num2']))
-  } else if (exampleAdditionInput['operation'] === 'divide' || exampleAdditionInput['operation'] === '/') {
-    console.log(doMath.divideNums(exampleAdditionInput['num1'], exampleAdditionInput['num2']))
-  }
+  const num1 = promptInput['num1'];
+  const num2 = promptInput['num2'];
+  const operation = promptInput['operation']
+
+  switch(operation) { 
+    case 'add':
+    case '+':
+      return console.log(doMath.addNums(num1, num2));
+    case 'subtract':
+    case '-':
+      return console.log(doMath.subtractNums(num1, num2));
+    case 'multiply':
+    case '*':
+      return console.log(doMath.multiplyNums(num1, num2));
+    case 'divide':
+    case '/':
+      return console.log(doMath.divideNums(num1, num2));
+  }  
+
+  // if (operation === 'add' || operation  === '+') {
+  //   console.log(doMath.addNums(num1, num2))
+  // } else if (operation === 'subtract' || operation === '-') {
+  //   console.log(doMath.subtractNums(num1, num2))
+  // } else if (operation === 'multiply' || operation === '*') {
+  //   console.log(doMath.multiplyNums(num1, num2))
+  // } else if (operation === 'divide' || operation === '/') {
+  //   console.log(doMath.divideNums(num1, num2))
+  // }
 
   // Questions to ask and answer:
-  // What is promptInput?
-  // What data type? What does it hold? What does it represent?
-  // How do we read values from it? What syntax?
-  // How can we use it?
-  // Can we call our existing functions now, inside of this function?
+  // What is promptInput? the 'user input'
+  // What data type? What does it hold? What does it represent? hash, like exampleAdditionInput
+  // How do we read values from it? What syntax? bracket notation
+  // How can we use it? if/else statements comparing said bracket notation to what we expect the data to contain
+  // Can we call our existing functions now, inside of this function? yes
 }
-
-// Example manual testing of calculator.  
-// calculateUserInput({}, {
-//   num1: 3,
-//   num2: 4,
-//   operation: 'add',
-// });
-
 
 // This exports the function so index.js can import it.
 exports.calculateUserInput = calculateUserInput;
-
-
-
 
 // Testing
 calculateUserInput(true, exampleAdditionInput);
