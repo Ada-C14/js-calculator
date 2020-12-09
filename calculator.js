@@ -6,7 +6,12 @@ const validOps = {
   multiply: '*',
   '*': 'multiply',
   divide: '/',
-  '/': 'divide'
+  '/': 'divide',
+  exponent: ['^', '**'],
+  '^': 'exponent',
+  '**': 'exponent',
+  modulo: '%',
+  '%': 'modulo'
 };
 
 const validDivision = function (num) {
@@ -80,6 +85,17 @@ const calculateUserInput = function (error, promptInput) {
       case '/':
         operator = '/';
         soln = num1 / num2;
+        break;
+      case 'exponent':
+      case '**':
+      case '^':
+        operator = '^';
+        soln = num1 ** num2;
+        break;
+      case 'modulo':
+      case '%':
+        operator = '%';
+        soln = num1 % num2;
         break;
     }
   } else {
