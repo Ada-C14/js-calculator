@@ -1,1 +1,3 @@
-npm run test
+#!/bin/sh
+
+npm test
