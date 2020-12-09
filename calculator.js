@@ -67,7 +67,7 @@ const output = function(operator, operation, num1, num2){
     return 'Operation is invalid.';
   }
   else {
-    const solution = operation(parseInt(num1), parseInt(num2));
+    const solution = operation(num1, num2);
 
     if(solution === 'zerodiv'){
       return 'You cannot divide by zero';
