@@ -33,10 +33,10 @@ const validNum = function (num) {
 const calculateUserInput = function (error, promptInput) {
   let num1;
   let num2;
-  let passedNumsCheck;
-  let passedOperatorCheck = true;
   let operator;
   let soln;
+  let passedNumsCheck;
+  let passedOperatorCheck = true;
   let errors = [];
   
   if (validNum(promptInput.num1) && validNum(promptInput.num2)) {
@@ -46,7 +46,7 @@ const calculateUserInput = function (error, promptInput) {
   } else {
     errors.push('INVALID NUMBER: One of the input numbers is invalid.');
     passedNumsCheck = false;
-  };
+  }
 
   if (!validOps[promptInput.operation]) {
     errors.push('INVALID OPERATOR: Please provide one of the following operators: +, -, *, /');
@@ -56,7 +56,7 @@ const calculateUserInput = function (error, promptInput) {
       errors.push('DIVIDING BY ZERO: Please change num2 so that we do not get a zero division error.');
       passedOperatorCheck = false;
     }
-  };
+  }
   
   if (passedNumsCheck && passedOperatorCheck) {
     switch (promptInput.operation) {
@@ -85,12 +85,12 @@ const calculateUserInput = function (error, promptInput) {
     console.log(`Woops! We've encountered errors:`);
     for (error in errors) {
       console.log(errors[error]);
-    };
-  };
+    }
+  }
 
   if (passedNumsCheck && passedOperatorCheck && !(soln === null)) {
     console.log(`${num1} ${operator} ${num2} = ${soln}`);
-  };
+  }
 
   // Questions to ask and answer:
   // What is promptInput?
