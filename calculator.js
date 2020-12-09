@@ -13,8 +13,9 @@ const calculateUserInput = function (error, promptInput) {
     console.log(`${promptInput.num2} is not a number.`);
   } else {
     console.log(checkOperation(promptInput));
-    return null;
   }
+  
+  return null;
 };
 
 const checkNumber = function(num) {
