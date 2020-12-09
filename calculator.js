@@ -23,7 +23,7 @@ const validNum = function (num) {
     return false;
   } else if (Number.isNaN(temp)) {
     return false;
-  } else if (temp === 0 && (!(temp == num) || num === '')) {
+  } else if (temp === 0 && temp == num && num !== '0') {
     return false;
   };
 
