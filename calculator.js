@@ -45,7 +45,7 @@ const calculateUserInput = function (error, promptInput) {
     case `divide`:
     case `/`:
       if (second === 0) {
-        console.log( `Can't divide by zero (0).`);
+        console.log( `You cannot divide by zero`);
       } else {
         result = first / second;
         console.log( `${first} / ${second} = ${result}`); 
@@ -54,7 +54,7 @@ const calculateUserInput = function (error, promptInput) {
     case `modulo`:
     case `%`:
       if (second === 0) {
-        console.log( `Can't divide by zero (0).`);
+        console.log( `You cannot divide by zero`);
       } else {
         result = first % second;
         console.log( `${first} % ${second} = ${result}`); 
