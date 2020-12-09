@@ -1,6 +1,6 @@
 const calculateUserInput = function (error, promptInput) {
-  const operations = constructOperations; 
-  const operators = constructOperators; 
+  const operations = Operations; 
+  const operators = Operators; 
   const num1 = parseInt(promptInput.num1);
   const num2 = parseInt(promptInput.num2);
 
@@ -35,40 +35,35 @@ const output = function(operator, operation, num1, num2){
   } 
 }
 
-const constructOperations = new function(){
-  const operations = {
-    '+': function (num1, num2){ return num1 + num2},
-    '-': function (num1, num2){ return num1 - num2},
-    '*': function (num1, num2){ return num1 * num2},
-    '/': function (num1, num2){ 
-      if(num2 === 0){
-        return 'zerodiv';
-      }
-      else{
-        return num1 / num2;
-      }
-    },
-    '**': function (num1, num2){ return num1 ** num2},
-    '%': function (num1, num2){ 
+const Operations = new function(){
+  this['+'] = function (num1, num2){ return num1 + num2};
+  this['-'] = function (num1, num2){ return num1 - num2};
+  this ['*'] = function (num1, num2){ return num1 * num2};
+  this['/'] = function (num1, num2){ 
+        if(num2 === 0){
+          return 'zerodiv';
+        }
+        else{
+          return num1 / num2;
+        }
+      };
+  this['**'] = function (num1, num2){ return num1 ** num2};
+  this['%'] = function (num1, num2){ 
       if(num2 === 0){
         return 'zeromod';
       }
       else{
         return num1 % num2;
       }
-    }
-  };
-  return operations;
+    };
 }
 
-const constructOperators = new function(){
-  const operators = {};
-  operators.add = operators['+'] = '+';
-  operators.subtract = operators['-'] = '-';
-  operators.multiply = operators['*'] = operators['x'] = '*';
-  operators.divide = operators['/'] = '/';
-  operators['to the power of'] = operators['**'] = operators['^'] = '**';
-  operators.modulo = operators['%'] = '%';
-  return operators;
+const Operators = new function(){
+  this.add = this['+'] = '+';
+  this.subtract = this['-'] = '-';
+  this.multiply = this['*'] = this['x'] = '*';
+  this.divide = this['/'] = '/';
+  this['to the power of'] = this['**'] = this['^'] = '**';
+  this.modulo = this['%'] = '%';
 }
 exports.calculateUserInput = calculateUserInput;
