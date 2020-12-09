@@ -21,15 +21,38 @@ const calculateUserInput = function (error, promptInput) {
   // How can we use it? 
     /* We can use it to retrieve user entered information. */
   // Can we call our existing functions now, inside of this function? 
-    /* yes 👾🔥👾🔥👾 */
+    /* #yes ↘👾🔥👾🔥👾↙ */
+
+  if (typeof promptInput.num1 == NaN() || typeof promptInput.num2 == NaN()) {
+    console.log('input must be a number')
+    return
+  }
+  if (promptInput.operation == 'add' || promptInput.operation == '+') {
+    console.log(parseFloat(promptInput.num1) + parseFloat(promptInput.num2));
+    return
+  } else if (promptInput.operation == 'subtract' || promptInput.operation == '-') {
+    console.log(parseFloat(promptInput.num1) - parseFloat(promptInput.num2));
+    return
+  } else if (promptInput.operation == 'multiply' || promptInput.operation == '*') {
+    console.log(parseFloat(promptInput.num1) * parseFloat(promptInput.num2));
+    return
+  } else if (promptInput.operation == 'divide' || promptInput.operation == '/') { 
+      if (parseFloat(promptInput.num2) == 0) {
+        console.log('You cannot divide by zero')
+        return }
+      else {
+        console.log(parseFloat(promptInput.num1) / parseFloat(promptInput.num2))
+        return
+      }
+    }
 }
 
 // Example manual testing of calculator.  
-calculateUserInput({}, {
-  num1: 3,
-  num2: 4,
-  operation: 'add',
-});
+// calculateUserInput({}, {
+//   num1: 3,
+//   num2: 4,
+//   operation: 'add',
+// });
 
 
 // This exports the function so index.js can import it.
