@@ -55,7 +55,6 @@ const calculateUserInput = function (error, promptInput) {
       return console.log(`unsupported operator`)
   }
 
-
   // Questions to ask and answer:
   // What is promptInput? it is an object holding num1, num2 (which should be numbers) and operation which should be a valid mathematical operation.
   // What data type? What does it hold? What does it represent? promptInput is an object representing user input of the numbers and operations.  
