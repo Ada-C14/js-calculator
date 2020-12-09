@@ -10,10 +10,15 @@
 
 //   // Questions to ask and answer:
 //   // What is promptInput?
+// an object that has num1, num2 and operation fields.  
 //   // What data type? What does it hold? What does it represent?
+// an object with a name/value pair
 //   // How do we read values from it? What syntax?
+// We can access values by using dot notation after the object name and then putting the name the value is assigned to after the dot.  
 //   // How can we use it?
+// dot notation
 //   // Can we call our existing functions now, inside of this function?
+// Yes.
 // }
 
 // Example manual testing of calculator.  
@@ -27,10 +32,10 @@ const calculateUserInput = function(error, promptInput){
   const operation = promptInput.operation
   const firstNum = parseInt(promptInput.num1)
   const secondNum = parseInt(promptInput.num2)
-
   const operators = ["add", "+", "subtract", "-", "divide", "/", "multiply", "*"]
+  
   if (firstNum === NaN || secondNum === NaN || operators.includes(operation) === false){
-    console.log('input was invalid')
+    console.log('Input was invalid.')
     return
   } else if (operation === 'add' || operation === '+') {
     addNums(firstNum, secondNum)
@@ -54,12 +59,13 @@ const multiplyNums = function(num1, num2) {
 const divideNums = function(num1, num2) {
   if (num2 == 0) {
     console.log(`You cannot divide by zero`);
-    return
+    return 
   }
   let total = num1 / num2
   console.log(`${num1} / ${num2} = ${total}`);
   return total
 }
+
 const addNums = function(num1, num2) {
   let total = num1 + num2
   console.log(`${num1} + ${num2} = ${total}`);
@@ -71,7 +77,6 @@ const subtractNums = function(num1, num2) {
   console.log(`${num1} - ${num2} = ${total}`);
   return total
 }
-
 
 // console.log(calculateUserInput(3, 5, '+'));
 
