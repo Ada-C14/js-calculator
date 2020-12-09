@@ -69,7 +69,7 @@ const calculateUserInput = function (error, promptInput) {
       }
       break;
     default:
-      console.log( `'unsupported operator'`);
+      console.log( `unsupported operator`);
   } 
 }
 
