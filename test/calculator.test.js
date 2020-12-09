@@ -146,7 +146,7 @@ describe('calculateUserInput', () => {
     expect(console.log.mock.calls).toContainEqual(['15 / 3 = 5']);
   });
 
-  test('-15 / 3 = 5', () => {
+  test('-15 / 3 = -5', () => {
 
     calculateUserInput({}, {
       num1: '-15',
