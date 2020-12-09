@@ -50,6 +50,22 @@ const reduceParensExpression = function(num) {
   return num;
 }
 
+const evalParens = function (num, origNum, errors) {
+  if (!validParens(num)) {
+    errors.push(`INVALID PARENS: ${origNum} does not use valid parentheses.`);
+  } else {
+    numReduced = reduceParensExpression(num);
+    if (numReduced.soln) {
+      num = numReduced.soln;
+      errors += numReduced.errors;
+    } else {
+      num = numReduced;
+    }
+  }
+
+  return {num: num, errors: errors};
+};
+
 const validOps = {
   add: '+',
   '+': 'add',
@@ -174,40 +190,21 @@ const calculateUserInput = function (error, promptInput) {
   let origNum1 = num1;
   let origNum2 = num2;
   let operator = promptInput.operation.toLowerCase();
-  let passedParensCheck = true;
-  
+  let errors = [];
+
   if (num1.includes('(') || num1.includes(')')) {
-    if (!validParens(num1)) {
-      errors.push(`INVALID PARENS: ${origNum1} does not use valid parentheses.`);
-      passedParensCheck = false;
-    } else {
-      num1Reduced = reduceParensExpression(num1);
-      if (num1Reduced.soln) {
-        num1 = num1Reduced.soln;
-        if (num1Reduced.errors.length > 0) {
-          return;
-        }
-      } else {
-        num1 = num1Reduced;
-      }
+    evalOutput = evalParens(num1, origNum1, errors);
+    errors += evalOutput.errors;
+    if (errors.length > 0) {
+      return;
     }
   }
 
   if (num2.includes('(') || num2.includes(')')) {
-    if (!validParens(num2)) {
-      errors.push(`INVALID PARENS: ${origNum2} does not use valid parentheses.`);
-      passedParensCheck = false;
-    } else {
-      num2Reduced = reduceParensExpression(num2);
-      num2 = num2Reduced.soln;
-      if (num2Reduced.soln) {
-        num2 = num2Reduced.soln;
-        if (num2Reduced.errors.length > 0) {
-          return;
-        }
-      } else {
-        num2 = num2Reduced;
-      }
+    evalOutput = evalParens(num2, origNum2, errors);
+    errors += evalOutput.errors;
+    if (errors.length > 0) {
+      return;
     }
   }
 
@@ -223,13 +220,13 @@ exports.calculateUserInput = calculateUserInput;
 
 //////////////////////////////////////////////////
 
-// Example manual testing of calculator.  
-calculateUserInput({}, {
-  num1: '(3.3)',
-  num2: '0',
-  // operation: 'AdD'
-  operation: '**'
-});
+// // Example manual testing of calculator.  
+// calculateUserInput({}, {
+//   num1: '(3.3)',
+//   num2: '0',
+//   // operation: 'AdD'
+//   operation: '**'
+// });
 
 // calculateUserInput({}, {
 //   num1: 5,
