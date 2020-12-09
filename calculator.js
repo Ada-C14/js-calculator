@@ -9,6 +9,13 @@ const validOps = {
   '/': 'divide'
 };
 
+const validDivision = function (num) {
+  if (num === 0) {
+    return false;
+  }
+  return true;
+};
+
 const validNum = function (num) {
   const temp = Number(num);
   
@@ -39,6 +46,10 @@ const calculateUserInput = function (error, promptInput) {
 
   if (!validOps[promptInput.operation]) {
     errors.push('INVALID OPERATOR: Please provide one of the following operators: +, -, *, /');
+  } else if (validOps[promptInput.operation] === 'divide' || validOps[promptInput.operation] == '/') {
+    if (!validDivision(num2)) {
+      errors.push('DIVIDING BY ZERO: Please change num2 so that we do not get a zero division error.');
+    }
   };
 
   if (num1 && num2 && validOps[promptInput.operation]) {
@@ -102,9 +113,9 @@ const calculateUserInput = function (error, promptInput) {
 // });
 
 // calculateUserInput({}, {
-//   num1: null,
-//   num2: 4,
-//   operation: 'add',
+//   num1: 5,
+//   num2: 'dog',
+//   operation: '/',
 // });
 
 // calculateUserInput({}, {
