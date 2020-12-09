@@ -24,19 +24,19 @@ const operatorSign = function(operation) {
     default: 
       return null;
   }
-}
+};
 
 const addNums = function(num1, num2) {
   return num1 + num2;
-}
+};
 
 const substractNums = function(num1, num2) {
   return num1 - num2;
-}
+};
 
 const multiplyNums = function(num1, num2) {
   return num1 * num2;
-}
+};
 
 const divideNums = function(num1, num2) {
   if (num2 == 0) {
@@ -44,7 +44,7 @@ const divideNums = function(num1, num2) {
   } else {
     return num1 / num2;
   }
-}
+};
 
 const exponentiateNums = function(num1, num2) {
   return num1 ** num2;
@@ -60,7 +60,7 @@ const isNumber = function(num) {
   } else if (parseFloat(num)) {
     return true; 
   } else if (num === 0 || num === '0') {
-    return true
+    return true;
   } else {
     console.log('Empty string cannot be operated on. Number must be entered');
   }
