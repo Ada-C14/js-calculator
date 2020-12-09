@@ -26,10 +26,10 @@ const calculateUserInput = function (error, promptInput) {
   let result = 0;
 
   if (isNaN(promptInput.num1) || isNaN(firstNum)) {
-    return console.log(`"${promptInput.num1}" is invalid, please try again`);
+    return console.log(`${promptInput.num1} is not a number.`);
   }
   else if (isNaN(promptInput.num2) || isNaN(secondNum)) {
-    return console.log(`"${promptInput.num2}" is invalid, please try again`);
+    return console.log(`${promptInput.num2} is not a number.`);
   };
 
   switch (operator) {
@@ -65,7 +65,7 @@ const calculateUserInput = function (error, promptInput) {
         break;
       };
     default:
-      console.log(`This calculator doesn't support operator ${operator}, please try again.`);
+      console.log('unsupported operator');
       break;
   };
 };
