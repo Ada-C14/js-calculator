@@ -79,7 +79,7 @@ Similarly if `promptInput` has the value:
 
 ```
 
-Your funciton will print "3 * 4 = 12".
+Your function will print "3 * 4 = 12".
 
 You can run these tests with the command:  `npm test`.
 
