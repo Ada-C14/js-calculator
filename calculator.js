@@ -23,10 +23,12 @@ const calculateUserInput = function (error, promptInput) {
   // Can we call our existing functions now, inside of this function? 
     /* #yes ↘👾🔥👾🔥👾↙ */
 
-  if (typeof promptInput.num1 == NaN() || typeof promptInput.num2 == NaN()) {
+  if (!isNaN(promptInput.num1) || !isNaN(promptInput.num2)) {
     console.log('input must be a number')
     return
   }
+
+
   if (promptInput.operation == 'add' || promptInput.operation == '+') {
     console.log(parseFloat(promptInput.num1) + parseFloat(promptInput.num2));
     return
