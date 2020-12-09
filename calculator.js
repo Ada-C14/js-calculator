@@ -26,7 +26,7 @@ const checkOperation = function(promptInput) {
   const num1 = Number(promptInput.num1);
   const num2 = Number(promptInput.num2);
 
-  switch (promptInput.operation) {
+  switch (promptInput.operation.toLowerCase()) {
     case 'add':
     case '+':
       return `${num1} + ${num2} = ${num1 + num2}`;
