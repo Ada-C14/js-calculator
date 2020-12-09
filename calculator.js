@@ -14,6 +14,10 @@ const checkNum = function (num) {
   };
 }
 
+const printResult = function (operator, num1, num2, result) {
+  return console.log(`${ num1 } ${operator} ${ num2 } = ${ result }`);
+}
+
 const calculateUserInput = function (error, promptInput) {
   console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
 
@@ -30,22 +34,22 @@ const calculateUserInput = function (error, promptInput) {
     case 'add':
     case '+':
       result = num1 + num2;
-      return console.log(`${ num1 } + ${ num2 } = ${ result }`);
+      return printResult('+', num1, num2, result);
     case 'subtract':
     case '-':
       result = num1 - num2;
-      return console.log(`${ num1 } - ${ num2 } = ${ result }`);
+      return printResult('-', num1, num2, result);
     case 'multiply':
     case '*':
       result = num1 * num2;
-      return console.log(`${ num1 } * ${ num2 } = ${ result }`);
+      return printResult('*', num1, num2, result);
     case 'divide':
     case '/':
       if (num2 === 0) {
-        return console.log('You cannot divide by zero')
+        return console.log('You cannot divide by zero');
       } else {
         result = num1 / num2;
-        return console.log(`${ num1 } / ${ num2 } = ${ result }`);
+        return printResult('/', num1, num2, result);
       }
     default: 
       return console.log(`unsupported operator`)
@@ -63,8 +67,8 @@ const calculateUserInput = function (error, promptInput) {
 // Example manual testing of calculator.  
 calculateUserInput({}, {
   num1: 6,
-  num2: 0,
-  operation: 'divide',
+  num2: 12,
+  operation: 'add',
 });
 
 // This exports the function so index.js can import it.
