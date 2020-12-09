@@ -20,7 +20,7 @@ const divideNums = function(a, b) {
   if (b === 0) {
     return 'You cannot divide by zero'
   } else {
-  return `${a} / ${b} = ${a / b}`;
+    return `${a} / ${b} = ${a / b}`;
   }
 };
 
