@@ -23,7 +23,7 @@ const validNum = function (num) {
     return false;
   } else if (Number.isNaN(temp)) {
     return false;
-  } else if (temp === 0 && !(temp == num)) {
+  } else if (temp === 0 && (!(temp == num) || num === '')) {
     return false;
   };
 
@@ -47,11 +47,12 @@ const calculateUserInput = function (error, promptInput) {
     errors.push('INVALID NUMBER: One of the input numbers is invalid.');
     passedNumsCheck = false;
   }
-
-  if (!validOps[promptInput.operation]) {
+  
+  if (!validOps[promptInput.operation.toLowerCase()]) {
     errors.push('INVALID OPERATOR: Please provide one of the following operators: +, -, *, /');
     passedOperatorCheck = false;
-  } else if (validOps[promptInput.operation] === 'divide' || validOps[promptInput.operation] == '/') {
+  } else if (validOps[promptInput.operation.toLowerCase()] === 'divide' || 
+             validOps[promptInput.operation.toLowerCase()] == '/') {
     if (!validDivision(num2)) {
       errors.push('DIVIDING BY ZERO: Please change num2 so that we do not get a zero division error.');
       passedOperatorCheck = false;
@@ -111,11 +112,11 @@ const calculateUserInput = function (error, promptInput) {
   // Yes
 }
 
-// // Example manual testing of calculator.  
+// Example manual testing of calculator.  
 // calculateUserInput({}, {
 //   num1: 3,
 //   num2: 0,
-//   operation: 'divide',
+//   operation: 'Divide',
 // });
 
 // calculateUserInput({}, {
