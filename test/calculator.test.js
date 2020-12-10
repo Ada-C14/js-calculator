@@ -178,7 +178,7 @@ describe('calculateUserInput', () => {
     });
 
     expect(console.log).toHaveBeenCalled();
-    expect(console.log.mock.calls).toContainEqual(['clown is not a number.']);
+    expect(console.log.mock.calls).toContainEqual(['clown is not a number']);
   });
 
   test('it prints "pasta is not a number." when given "pasta" instead of a number for num2', () => {
@@ -189,7 +189,7 @@ describe('calculateUserInput', () => {
     });
 
     expect(console.log).toHaveBeenCalled();
-    expect(console.log.mock.calls).toContainEqual(['pasta is not a number.']);
+    expect(console.log.mock.calls).toContainEqual(['pasta is not a number']);
   });
 
   test('it prints "unsupported operator" for the operation "don\'t panic"', () => {
