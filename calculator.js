@@ -4,6 +4,7 @@ const UserInput = {
   num2: 5,
   operation: 'add',
 }
+// '3 + 5 = 8'
 
 //check that number is an integer 
 
