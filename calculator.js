@@ -1,6 +1,6 @@
 const calculateUserInput = function (error, promptInput) {
-  const operations = Operations; 
-  const operators = Operators; 
+  const operations = new Operations; 
+  const operators = new Operators; 
   const num1 = parseInt(promptInput.num1);
   const num2 = parseInt(promptInput.num2);
 
@@ -35,7 +35,7 @@ const output = function(operator, operation, num1, num2){
   } 
 }
 
-const Operations = new function(){
+const Operations = function(){
   this['+'] = function (num1, num2){ return num1 + num2};
   this['-'] = function (num1, num2){ return num1 - num2};
   this ['*'] = function (num1, num2){ return num1 * num2};
@@ -58,7 +58,7 @@ const Operations = new function(){
     };
 }
 
-const Operators = new function(){
+const Operators = function(){
   this.add = this['+'] = '+';
   this.subtract = this['-'] = '-';
   this.multiply = this['*'] = this['x'] = '*';
