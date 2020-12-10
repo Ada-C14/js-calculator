@@ -40,7 +40,7 @@ const calculateUserInput = function (error, promptInput) {
   function includeOperator(operation) {
     const operations = ['add', 'subtract', 'multiply', 'divide', '+', '-', '*', '/']
     if (!operations.includes(operation)) {
-        console.log('Choose a valid operator');
+        console.log('unsupported operator');
     }
     return operation
 }
@@ -50,9 +50,9 @@ const calculateUserInput = function (error, promptInput) {
   const operator = includeOperator(promptInput.operation);
 
   if (isNaN(num1)) {
-    console.log (`${num1} is not a number`);
+    console.log (`${promptInput.num1} is not a number.`);
   } else if (isNaN(num2)) {
-    console.log (`${num2} is not a number`);
+    console.log (`${promptInput.num2} is not a number.`);
   } else {
     switch(operator) {
       case '+':
