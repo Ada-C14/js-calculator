@@ -21,7 +21,7 @@ function getValidNums(number) {
 }
 
 const calculateUserInput = function (error, promptInput) {
-  console.log('This is the value of the promptInput variable that got passed in by prompt, after our prompt package collect user input', promptInput);
+  // console.log(promptInput);
 
   // Questions to ask and answer:
   // What is promptInput?
@@ -32,35 +32,30 @@ const calculateUserInput = function (error, promptInput) {
 
   let num1 = getValidNums(promptInput.num1);
     if (num1 == null) {
-      console.log(`Invalid input: ${promptInput.num1}`)
-    }
+      console.log(`Invalid input: ${promptInput.num1}`);
+      return;
+    };
 
   let num2 = getValidNums(promptInput.num2);
     if (num2 == null) {
-      console.log(`Invalid input: ${promptInput.num2}`)
-    }
+      console.log(`Invalid input: ${promptInput.num2}`);
+      return;
+    };
 
   let operator = getValidOperator(promptInput.operation);
     if (operator == null) {
       console.log(`Invalid operator: ${promptInput.operation}`);
-    }
-
-    const addNums = function(num1, num2) {
-      return num1 + num2;
+      return;
     };
 
-    const subtractNums = function(num1, num2) {
-      return num1 - num2;
-    };
+    const addNums = (num1, num2) => { return`${num1} + ${num2} = ${num1 + num2}`};
+
+    const subtractNums = (num1, num2) => { return`${num1} - ${num2} = ${num1 - num2}`};
       
-    const multiplyNums = function(num1, num2) {
-      return num1 * num2;
-    };
+    const multiplyNums = (num1, num2) => { return`${num1} * ${num2} = ${num1 * num2}`};
       
-    const divideNums = function(num1, num2) {
-      return num1 / num2;
-    };
-    
+    const divideNums = (num1, num2) => { return`${num1} / ${num2} = ${num1 / num2}`};
+
     switch  (operator) {
       case 'add':
       case '+':
@@ -81,7 +76,6 @@ const calculateUserInput = function (error, promptInput) {
         }
         console.log(divideNums(num1, num2));
         break;
-    
     }
     
 }
