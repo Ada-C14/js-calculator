@@ -21,7 +21,6 @@ function getValidNums(number) {
 }
 
 const calculateUserInput = function (error, promptInput) {
-  // console.log(promptInput);
 
   // Questions to ask and answer:
   // What is promptInput?
@@ -69,7 +68,7 @@ const calculateUserInput = function (error, promptInput) {
       case '*':
         console.log(multiplyNums(num1, num2));
         break;
-      case 'divive':
+      case 'divide':
       case '/':
         if (num2 == 0){
           console.log(`You cannot divide by zero`)
