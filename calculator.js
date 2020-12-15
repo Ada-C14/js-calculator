@@ -29,7 +29,9 @@ const multiply = function(num1, num2){
 
 // I should be able to divide two numbers
 const divide = function(error, num1, num2){
-  if (num2 == 0) {
+  if (error['message']){
+    return error['message']
+  } else if (num2 == 0) {
     return error['message'] = "You cannot divide by zero"; 
   } else {
     const equals = num1 / num2;
@@ -43,17 +45,6 @@ const numPower = function(num, power) {
   const equals = num**power;
   const value = `${num}^${power} = ${equals}`; 
   return value
-}
-
-// I should have a way to validate user input
-const validateOperator = function(error, operator) {
-  const valid_input = ['add', '+', 'subtract', '-', 'multiply', '*', 'divide', '/', 'power', '** ^'];
-    
-  if (!valid_input.includes(operator)) {
-    return error['message'] = "unsupported operator";
-  } else {
-    return operator
-  }
 }
 
 const validateNumber = function(error, num) {
@@ -77,7 +68,7 @@ const calculateUserInput = function (error, promptInput) {
 
 
   
-  let operation = validateOperator(error, promptInput.operation);
+  let operation = promptInput.operation;
   let num1 = validateNumber(error, promptInput.num1);
   let num2 = validateNumber(error, promptInput.num2);
   let value;
@@ -110,7 +101,7 @@ const calculateUserInput = function (error, promptInput) {
       console.log(value)
       break;
     default:
-      value = error.message;
+      value = 'unsupported operator'
       console.log(value)
       break;
   }
