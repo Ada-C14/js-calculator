@@ -87,26 +87,32 @@ const calculateUserInput = function (error, promptInput) {
     case '+':
       value = add(num1, num2)
       console.log(value)
+      break;
     case 'subtract':
     case '-':
       value = subtract(num1, num2)
       console.log(value)
+      break;
     case 'multiply':
     case '*':
       value = multiply(num1, num2)
       console.log(value)
+      break;
     case 'divide':
     case '/':
       value = divide(error, num1, num2)
       console.log(value)
+      break;
     case 'power':
     case '^': 
     case '**':
       value = numPower(num1, num2)
       console.log(value)
+      break;
     default:
       value = error.message;
       console.log(value)
+      break;
   }
 }
 
